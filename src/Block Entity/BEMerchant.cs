@@ -61,7 +61,7 @@ namespace UsefulStuff
             entityUtil = api.ModLoader.GetModSystem<EntityPartitioning>();
             if (timer == 0) timer = api.World.Calendar.TotalHours;
 
-            RegisterGameTickListener(checkConditions, 10);
+            RegisterGameTickListener(checkConditions, 10000);
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -145,7 +145,7 @@ namespace UsefulStuff
 
             if (!occupied && nextTenantIn >= 24)
             {
-                dsc.AppendLine(Lang.Get("Another merchant arrives in {0} days", Math.Floor(nextTenantIn/24)));
+                dsc.AppendLine(Lang.Get("Another merchant arrives in {0} days", Math.Floor(nextTenantIn / 24)));
                 return;
             }
             else if (!occupied && nextTenantIn < 24)
@@ -155,7 +155,7 @@ namespace UsefulStuff
             }
             else if (occupied && tenantLeavingIn >= 24)
             {
-                dsc.AppendLine(Lang.Get("Merchant leaves in {0} days", Math.Floor(tenantLeavingIn/24)));
+                dsc.AppendLine(Lang.Get("Merchant leaves in {0} days", Math.Floor(tenantLeavingIn / 24)));
                 return;
             }
             else
@@ -221,7 +221,7 @@ namespace UsefulStuff
                 {
                     EntityTrader trader;
                     if (enjoyedStay && Api.Side == EnumAppSide.Server && (trader = search as EntityTrader) != null && search.Alive)
-                    { 
+                    {
                         DummySlot giftslot = new DummySlot(gifts[Api.World.Rand.Next(gifts.Length)]);
 
                         if (foodsource?.Inventory != null)
@@ -254,7 +254,7 @@ namespace UsefulStuff
             Api.World.BlockAccessor.WalkBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
                 (block, posX, posY, posZ) =>
                 {
-                    if (block.Code.BeginsWith("game","bed"))
+                    if (block.Code.BeginsWith("game", "bed"))
                     {
                         result = true;
                         return;
@@ -268,14 +268,13 @@ namespace UsefulStuff
         public bool hasFood(Cuboidi area)
         {
             bool result = false;
-
             Api.World.BlockAccessor.WalkBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
                 (block, posX, posY, posZ) =>
                 {
-                    BlockEntityGenericContainer bec;
+                    IBlockEntityContainer bec;
 
-                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(new BlockPos(posX, posY, posZ)) as BlockEntityGenericContainer) == null) return;
-
+                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(new BlockPos(posX, posY, posZ)) as IBlockEntityContainer) == null) return;
+                    
                     foreach (ItemSlot slot in bec.Inventory)
                     {
                         if (slot.Itemstack?.Collectible?.NutritionProps != null && !FindMatchCode(slot.Itemstack.Collectible.Code))
@@ -285,7 +284,7 @@ namespace UsefulStuff
                             return;
                         }
                     }
-                    
+
                 });
 
 
