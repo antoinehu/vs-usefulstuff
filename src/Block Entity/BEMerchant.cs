@@ -250,15 +250,16 @@ namespace UsefulStuff
         public bool hasBed(Cuboidi area)
         {
             bool result = false;
-
-            Api.World.BlockAccessor.WalkBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
-                (block, posX, posY, posZ) =>
+            // Return false to SearchBlocks to stop search. Otherwise continue search. 
+            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
+                (block, blockpos) =>
                 {
                     if (block.Code.BeginsWith("game", "bed"))
                     {
                         result = true;
-                        return;
+                        return false; //Bed found; stop search. 
                     }
+                    return true;
                 });
 
 
@@ -268,26 +269,27 @@ namespace UsefulStuff
         public bool hasFood(Cuboidi area)
         {
             bool result = false;
-            Api.World.BlockAccessor.WalkBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
-                (block, posX, posY, posZ) =>
+            // int checked2 = 0;
+            // Return false to SearchBlocks to stop search. Otherwise continue search. 
+            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
+                (block, blockpos) =>
                 {
+                    // checked2++;
                     IBlockEntityContainer bec;
-
-                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(new BlockPos(posX, posY, posZ)) as IBlockEntityContainer) == null) return;
-                    
+                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(blockpos) as IBlockEntityContainer) == null) return true; 
                     foreach (ItemSlot slot in bec.Inventory)
                     {
                         if (slot.Itemstack?.Collectible?.NutritionProps != null && !FindMatchCode(slot.Itemstack.Collectible.Code))
                         {
                             result = true;
                             foodsource = slot;
-                            return;
+                            // System.Diagnostics.Debug.WriteLine("(UsefulStuff) foodsource" + foodsource.Itemstack.Collectible.Code.ToString());
+                            return false; // Stops the search of SearchBlocks
                         }
                     }
-
+                    return true;
                 });
-
-
+            // System.Diagnostics.Debug.WriteLine("(UsefulStuff) checked2:{0}", checked2);
             return result;
         }
 
