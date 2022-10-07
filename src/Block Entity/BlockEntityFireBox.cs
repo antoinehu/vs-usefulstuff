@@ -126,7 +126,9 @@ namespace UsefulStuff
                                 int empty = 0;
                                 foreach (ItemSlot slot in gs.Inventory)
                                 {
-                                    if (slot.Itemstack?.Collectible.CombustibleProps?.SmeltedStack?.ResolvedItemstack != null && slot.Itemstack.Collectible.CombustibleProps.SmeltingType == EnumSmeltType.Fire)
+                                    if (slot.Empty) { empty++;}
+                                    else if (slot.Itemstack?.Collectible.CombustibleProps?.SmeltedStack?.ResolvedItemstack != null 
+                                             && slot.Itemstack.Collectible.CombustibleProps.SmeltingType == EnumSmeltType.Fire)
                                     {
                                         int orgSize = slot.Itemstack.StackSize;
                                         ItemStack burned = slot.Itemstack.Collectible.CombustibleProps.SmeltedStack.ResolvedItemstack.Clone();
@@ -145,7 +147,6 @@ namespace UsefulStuff
                                             }
                                         }
                                     }
-                                    else if (slot.Empty) empty++;
                                 }
 
                                 if (empty >= 4) Api.World.BlockAccessor.SetBlock(0, tmpPos); else gs.MarkDirty(true);

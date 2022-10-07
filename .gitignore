@@ -3,3 +3,5 @@ usefulstuff*.csproj.user
 usefulstuff*.dll
 usefulstuff*.pdb
 screenshots
+/bin/Debug Normal
+/obj/Debug Normal
