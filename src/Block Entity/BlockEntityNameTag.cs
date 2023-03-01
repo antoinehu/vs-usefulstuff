@@ -86,7 +86,8 @@ namespace UsefulStuff
 
                     IClientWorldAccessor clientWorld = (IClientWorldAccessor)Api.World;
 
-                    GuiDialogBlockEntityTextInput dlg = new GuiDialogBlockEntityTextInput(dialogTitle, Pos, text, Api as ICoreClientAPI, 160, 1);
+                    GuiDialogBlockEntityTextInput dlg = new GuiDialogBlockEntityTextInput(dialogTitle, Pos, text, Api as ICoreClientAPI,
+                        new TextAreaConfig() { MaxWidth = 160, MaxHeight = 1 });
 
                     dlg.OnCloseCancel = () =>
                     {

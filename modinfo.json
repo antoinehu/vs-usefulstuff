@@ -1,13 +1,13 @@
 {
   "type": "code",
   "modid": "usefulstuff17",
-  "name": "Useful Stuff 1.17",
+  "name": "Useful Stuff 1.17 and Beyond",
   "authors": [ "jakecool19", "Stahl" ],
   "contributors": [ "DArkHekRoMaNT" ],
-  "description": "Unofficial update to Useful Stuff for 1.17.",
-  "version": "1.0.2",
+  "description": "Unofficial update to Useful Stuff for 1.17 and beyond.",
+  "version": "1.1.0",
   "website": "https://github.com/antoinehu/vs-usefulstuff",
   "dependencies": {
-    "game": "1.17.3"
+    "game": "1.18-pre.3"
   }
 }

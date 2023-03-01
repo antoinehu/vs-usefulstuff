@@ -2,6 +2,7 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.MathTools;
 using System.Collections.Generic;
+using Vintagestory.GameContent;
 
 namespace UsefulStuff
 {
@@ -59,7 +60,7 @@ namespace UsefulStuff
             return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
 
-        public override EnumIgniteState OnTryIgniteBlock(EntityAgent byEntity, BlockPos pos, float secondsIgniting)
+        public EnumIgniteState OnTryIgniteBlock(EntityAgent byEntity, BlockPos pos, float secondsIgniting)
         {
             BlockEntityFireBox beb = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityFireBox;
             if (!beb.CanIgnite((byEntity as EntityPlayer)?.Player)) return EnumIgniteState.NotIgnitablePreventDefault;
@@ -69,7 +70,7 @@ namespace UsefulStuff
             return secondsIgniting > 4 ? EnumIgniteState.IgniteNow : EnumIgniteState.Ignitable;
         }
 
-        public override void OnTryIgniteBlockOver(EntityAgent byEntity, BlockPos pos, float secondsIgniting, ref EnumHandling handling)
+        public void OnTryIgniteBlockOver(EntityAgent byEntity, BlockPos pos, float secondsIgniting, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;
 

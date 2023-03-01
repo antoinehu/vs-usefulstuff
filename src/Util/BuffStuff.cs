@@ -149,7 +149,7 @@ namespace BuffStuff
                         activeBuffsByEntityAndBuffId.Remove(serverPlayer.Entity);
                     }
                 };
-                sapi.Event.OnEntityDespawn += (Entity entity, EntityDespawnReason reason) => {
+                sapi.Event.OnEntityDespawn += (Entity entity, EntityDespawnData reason) => {
                     activeBuffsByEntityAndBuffId.Remove(entity);
                 };
                 sapi.Event.PlayerDeath += (serverPlayer, damageSource) => {
