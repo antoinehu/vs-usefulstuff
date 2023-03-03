@@ -5,7 +5,7 @@
   "authors": [ "jakecool19", "Stahl" ],
   "contributors": [ "DArkHekRoMaNT" ],
   "description": "Unofficial update to Useful Stuff for 1.17 and beyond.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "website": "https://github.com/antoinehu/vs-usefulstuff",
   "dependencies": {
     "game": "1.18-pre.3"
