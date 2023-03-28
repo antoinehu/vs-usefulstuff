@@ -5,7 +5,7 @@ using Vintagestory.API.Client;
 
 namespace UsefulStuff
 {
-    public class ItemGlider : Item
+    public class ItemUSGlider : Item
     {
         public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
         {

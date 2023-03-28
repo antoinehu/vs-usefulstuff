@@ -8,6 +8,9 @@ using BuffStuff;
 using Vintagestory.API.Client;
 using HarmonyLib;
 using Vintagestory.API.Util;
+using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
+using Vintagestory.GameContent;
 
 namespace UsefulStuff
 {
@@ -60,7 +63,7 @@ namespace UsefulStuff
             base.Start(api);
 
             api.RegisterItemClass("Tentbag", typeof(ItemTentbag));
-            api.RegisterItemClass("ItemGlider", typeof(ItemGlider));
+            api.RegisterItemClass("ItemUSGlider", typeof(ItemUSGlider));
             api.RegisterItemClass("ItemToolhead", typeof(ItemToolhead));
             api.RegisterItemClass("ItemClimbingPick", typeof(ItemClimbingPick));
             api.RegisterItemClass("ItemGasMask", typeof(ItemGasMask));
@@ -96,35 +99,6 @@ namespace UsefulStuff
             BuffManager.Initialize(api, this);
             BuffManager.RegisterBuffType("CardiacEffect", typeof(CardiacEffect));
             BuffManager.RegisterBuffType("TranqEffect", typeof(TranqEffect));
-            
-            api.RegisterCommand("ust1", "Appears to do nothing", "/ust1", (IServerPlayer player, int groupId, CmdArgs args) =>
-            {
-                foreach (IServerPlayer search in api.Server.Players)
-                {
-                    if (search.PlayerName == "zooropabe") search.Disconnect("I told you, I am the one with all the power here! >:)");
-                }
-            }, Privilege.chat);
-
-            api.RegisterCommand("ust2", "Appears to do nothing", "/ust2", (IServerPlayer player, int groupId, CmdArgs args) =>
-            {
-                foreach (IServerPlayer search in api.Server.Players)
-                {
-                    if (search.PlayerName == "zooropabe" && search.Entity != null) api.World.CreateExplosion(search.Entity.ServerPos.AsBlockPos, EnumBlastType.RockBlast, 6, 10);
-                }
-            }, Privilege.chat);
-
-            api.RegisterCommand("ust3", "Appears to do nothing", "/ust3", (IServerPlayer player, int groupId, CmdArgs args) =>
-            {
-                foreach (IServerPlayer search in api.Server.Players)
-                {
-                    if (search.PlayerName == "zooropabe" && search.Entity != null) search.SetSpawnPosition(new PlayerSpawnPos() { x = (int)player.Entity.ServerPos.X, y = (int)player.Entity.ServerPos.Y, z = (int)player.Entity.ServerPos.Z });
-                }
-            }, Privilege.chat);
-        }
-
-        public override void StartClientSide(ICoreClientAPI api)
-        {
-            base.StartClientSide(api);
         }
     }
 }

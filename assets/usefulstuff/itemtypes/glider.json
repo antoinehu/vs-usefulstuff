@@ -2,7 +2,7 @@
 	code: "glider",
 	maxstacksize: 1,
 	shape: { base: "usefulstuff:item/tool/glider" },
-  class: "ItemGlider",
+  class: "ItemUSGlider",
 	textures: {
 		"fabric": { base: "game:block/cloth/linen/diamond1" },
 		"wood": { base: "game:block/wood/planks/generic" }
