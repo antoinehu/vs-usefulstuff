@@ -69,20 +69,23 @@ namespace UsefulStuff
 
                 if (!canPack) return;
                 end.Add(1, 1, 1);
+                // Add area works properly only on server side.
+                if (byEntity.Api.Side == EnumAppSide.Server)
+                {
+                    bs.AddArea(byEntity.World, start, end);
+                    bs.EntitiesUnpacked = new List<Entity>();
+                    bs.Pack(byEntity.World, start);
+                    ItemStack packed = new ItemStack(byEntity.World.GetItem(new AssetLocation(Attributes["packedBag"].AsString("usefulstuff:tentbag-packed"))), slot.StackSize);
+                    packed.Attributes.SetString("tent", bs.ToJson());
+                    if (slot.Itemstack.Attributes.GetString("nametagName") != null) packed.Attributes.SetString("nametagName", slot.Itemstack.Attributes.GetString("nametagName"));
+                    byEntity.World.SpawnItemEntity(packed, blockSel.Position.ToVec3d().Add(0, 1, 0));
 
-                bs.AddArea(byEntity.World, start, end);
-                bs.EntitiesUnpacked = new List<Entity>();
-                bs.Pack(byEntity.World, start);
-                ItemStack packed = new ItemStack(byEntity.World.GetItem(new AssetLocation(Attributes["packedBag"].AsString("usefulstuff:tentbag-packed"))), slot.StackSize);
-                packed.Attributes.SetString("tent", bs.ToJson());
-                if (slot.Itemstack.Attributes.GetString("nametagName") != null) packed.Attributes.SetString("nametagName", slot.Itemstack.Attributes.GetString("nametagName"));
-                byEntity.World.SpawnItemEntity(packed, blockSel.Position.ToVec3d().Add(0, 1, 0));
-
-                end.Add(-1, -1, -1);
-                byEntity.World.BulkBlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) => { if (block.BlockId != 0) byEntity.World.BulkBlockAccessor.SetBlock(0, new BlockPos(posX, posY, posZ)); });
-                byEntity.World.BulkBlockAccessor.Commit();
-                slot.TakeOutWhole();
-                byEntity.ReceiveSaturation(-UsefulStuffConfig.Loaded.TentBuildEffort);
+                    end.Add(-1, -1, -1);
+                    byEntity.World.BulkBlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) => { if (block.BlockId != 0) byEntity.World.BulkBlockAccessor.SetBlock(0, new BlockPos(posX, posY, posZ)); });
+                    byEntity.World.BulkBlockAccessor.Commit();
+                    slot.TakeOutWhole();
+                    byEntity.ReceiveSaturation(-UsefulStuffConfig.Loaded.TentBuildEffort);
+                }
             }
             else
             {
@@ -90,7 +93,7 @@ namespace UsefulStuff
                 BlockPos end = blockSel.Position.AddCopy(size, Math.Max(height, 3), size);
                 bool canPlace = true;
 
-                byEntity.World.BlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) => 
+                byEntity.World.BlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) =>
                 {
                     BlockPos pos = new BlockPos(posX, posY, posZ);
                     if (!canPlace) return;

@@ -5,3 +5,5 @@ usefulstuff*.pdb
 screenshots
 /bin/Debug Normal
 /obj/Debug Normal
+/obj/Debug 1.17.11
+/bin/Debug 1.17.11
