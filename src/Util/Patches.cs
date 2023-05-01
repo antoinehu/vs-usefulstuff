@@ -271,7 +271,7 @@ namespace UsefulStuff
             {
                 foreach (var patched in harmony.GetPatchedMethods())
                 {
-                    if (patched.Name == original.Name) return false; 
+                    if (patched.Name == original.Name) return false;
                 }
             }
 
@@ -282,13 +282,13 @@ namespace UsefulStuff
         [HarmonyPrefix]
         static void ChangeToScraps(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, CollectibleObject __instance, int amount = 1)
         {
-            if (world.Side != EnumAppSide.Server || byEntity == null) return;
+            if (world.Side != EnumAppSide.Server || byEntity == null || __instance.Attributes?["brokenReturn"] == null) return;
             IItemStack itemstack = itemslot.Itemstack;
 
             int leftDurability = itemstack.Attributes.GetInt("durability", __instance.GetMaxDurability(itemslot.Itemstack));
             leftDurability -= amount;
 
-            if (leftDurability <= 0 && __instance.Attributes?["brokenReturn"] != null)
+            if (leftDurability <= 0)
             {
                 JsonItemStack[] stacks = __instance.Attributes["brokenReturn"].AsObject<JsonItemStack[]>(new JsonItemStack[0]);
                 if (stacks.Length <= 0) return;
