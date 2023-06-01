@@ -61,5 +61,10 @@
 	rotation: { x: 90, y: 0, z: 0 },
 	origin: { x: 0.5, y: 0, z: 0.5 },
 	scale: 0.5
-}
+	},
+	grindingProps: {
+		grindedStack: { "type": "item",
+          "code": "game:metalbit-{metal}",
+          "quantity": 10 }
+	}
 }

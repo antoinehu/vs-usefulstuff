@@ -18,7 +18,7 @@ namespace UsefulStuff
             if (UsefulStuffConfig.Loaded.ClimbingPickDisabledInProtected)
             {
                 bool bossnear = false;
-                entityUtil?.WalkEntities(byEntity.SidedPos.XYZ, 30, (e) =>
+                entityUtil?.WalkInteractableEntities(byEntity.SidedPos.XYZ, 30, (e) =>
                 {
                     if (e?.Properties?.Attributes?.IsTrue("isBoss") == true)
                     {

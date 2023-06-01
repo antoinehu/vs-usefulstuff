@@ -123,18 +123,21 @@ namespace UsefulStuff
                     }
                 });
                 if (!canPlace) return;
-
-                BlockSchematic bs = BlockSchematic.LoadFromString(slot.Itemstack.Attributes.GetString("tent"), ref debug);
-                bs.ReplaceMode = EnumReplaceMode.ReplaceAll;
-                start = bs.AdjustStartPos(start.Add(size, 1, size), EnumOrigin.BottomCenter);
-                bs.Place(byEntity.World.BulkBlockAccessor, byEntity.World, start);
-                byEntity.World.BulkBlockAccessor.Commit();
-                bs.PlaceEntitiesAndBlockEntities(byEntity.World.BlockAccessor, byEntity.World, start, bs.BlockCodes, bs.ItemCodes);
-                ItemStack empty = new ItemStack(byEntity.World.GetItem(new AssetLocation(Attributes["emptyBag"].AsString("usefulstuff:tentbag-empty"))), slot.StackSize);
-                if (slot.Itemstack.Attributes.GetString("nametagName") != null) empty.Attributes.SetString("nametagName", slot.Itemstack.Attributes.GetString("nametagName"));
-                byEntity.World.SpawnItemEntity(empty, blockSel.Position.ToVec3d().Add(0, 1, 0));
-                slot.TakeOutWhole();
-                byEntity.ReceiveSaturation(-UsefulStuffConfig.Loaded.TentBuildEffort);
+                if (byEntity.Api.Side == EnumAppSide.Server)
+                {
+                    BlockSchematic bs = BlockSchematic.LoadFromString(slot.Itemstack.Attributes.GetString("tent"), ref debug);
+                    bs.ReplaceMode = EnumReplaceMode.ReplaceAll;
+                    start = bs.AdjustStartPos(start.Add(size, 1, size), EnumOrigin.BottomCenter);
+                    bs.Place(byEntity.World.BulkBlockAccessor, byEntity.World, start);
+                    byEntity.World.BulkBlockAccessor.Commit();
+                    bs.PlaceEntitiesAndBlockEntities(byEntity.World.BlockAccessor, byEntity.World, start, bs.BlockCodes, bs.ItemCodes);
+                    ItemStack empty = new ItemStack(byEntity.World.GetItem(new AssetLocation(Attributes["emptyBag"].AsString("usefulstuff:tentbag-empty"))), slot.StackSize);
+                    if (slot.Itemstack.Attributes.GetString("nametagName") != null) empty.Attributes.SetString("nametagName", slot.Itemstack.Attributes.GetString("nametagName"));
+                    byEntity.World.SpawnItemEntity(empty, blockSel.Position.ToVec3d().Add(0, 1, 0));
+                    slot.TakeOutWhole();
+                    slot.MarkDirty();
+                    byEntity.ReceiveSaturation(-UsefulStuffConfig.Loaded.TentBuildEffort);
+                }
             }
 
         }

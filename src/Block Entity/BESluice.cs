@@ -113,7 +113,7 @@ namespace UsefulStuff
 
                         float val = UsefulStuffConfig.Loaded.SluiceEfficiency * drop.Chance.nextFloat();
 
-                        
+
                         ItemStack stack;
 
                         if (UsefulStuffConfig.Loaded.SlucieGiveRocks && drops[i].Code.Path.Contains("{rocktype}"))
@@ -145,7 +145,7 @@ namespace UsefulStuff
 
             MeshData meshbase;
             Vec3f rotation = new Vec3f(Block.Shape.rotateX, Block.Shape.rotateY, Block.Shape.rotateZ);
-            blockTexPosSource = capi.Tesselator.GetTexSource(Block);
+            blockTexPosSource = capi.Tesselator.GetTextureSource(Block);
 
             capi.Tesselator.TesselateShape("besluice", Api.Assets.TryGet("usefulstuff:shapes/block/wood/sluicecurrent.json").ToObject<Shape>(), out meshbase, this, rotation);
 

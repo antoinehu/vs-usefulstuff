@@ -195,7 +195,7 @@ namespace UsefulStuff
         {
             Entity result = null;
 
-            entityUtil.WalkEntities(Pos.ToVec3d(), 48, (search) =>
+            entityUtil.WalkInteractableEntities(Pos.ToVec3d(), 48, (search) =>
             {
                 if (eid == search.EntityId && search.Alive)
                 {
@@ -215,7 +215,7 @@ namespace UsefulStuff
 
         public void evictTenant(bool enjoyedStay = false)
         {
-            entityUtil.WalkEntities(Pos.ToVec3d(), 48, (search) =>
+            entityUtil.WalkInteractableEntities(Pos.ToVec3d(), 48, (search) =>
             {
                 if (eid == search.EntityId)
                 {
@@ -250,14 +250,14 @@ namespace UsefulStuff
         public bool hasBed(Cuboidi area)
         {
             bool result = false;
-            // Return false to SearchBlocks to stop search. Otherwise continue search. 
+            // Return false to SearchBlocks to stop search. Otherwise continue search.
             Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
                 (block, blockpos) =>
                 {
                     if (block.Code.BeginsWith("game", "bed"))
                     {
                         result = true;
-                        return false; //Bed found; stop search. 
+                        return false; //Bed found; stop search.
                     }
                     return true;
                 });
@@ -270,13 +270,13 @@ namespace UsefulStuff
         {
             bool result = false;
             // int checked2 = 0;
-            // Return false to SearchBlocks to stop search. Otherwise continue search. 
+            // Return false to SearchBlocks to stop search. Otherwise continue search.
             Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
                 (block, blockpos) =>
                 {
                     // checked2++;
                     IBlockEntityContainer bec;
-                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(blockpos) as IBlockEntityContainer) == null) return true; 
+                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(blockpos) as IBlockEntityContainer) == null) return true;
                     foreach (ItemSlot slot in bec.Inventory)
                     {
                         if (slot.Itemstack?.Collectible?.NutritionProps != null && !FindMatchCode(slot.Itemstack.Collectible.Code))
