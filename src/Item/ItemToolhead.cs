@@ -12,7 +12,7 @@ namespace UsefulStuff
         {
             base.OnGroundIdle(entityItem);
 
-            if (UsefulStuffConfig.Loaded.QuenchEnabled && UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(FirstCodePart(1)) && entityItem.Itemstack?.Attributes.GetBool("quenched") != true && entityItem.Itemstack?.Collectible.GetTemperature(entityItem.World, entityItem.Itemstack) > 600 && entityItem.Swimming)
+            if (UsefulStuffConfig.Loaded.QuenchEnabled && UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(LastCodePart()) && entityItem.Itemstack?.Attributes.GetBool("quenched") != true && entityItem.Itemstack?.Collectible.GetTemperature(entityItem.World, entityItem.Itemstack) > 600 && entityItem.Swimming)
             {
                 entityItem.Itemstack.Attributes.SetBool("quenched", true);
             }
@@ -22,13 +22,13 @@ namespace UsefulStuff
         {
             if (!world.Api.ModLoader.IsModEnabled("mcbpicks")) base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
 
-            if (UsefulStuffConfig.Loaded.QuenchEnabled && UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(FirstCodePart(1)) && inSlot.Itemstack.Attributes.GetBool("quenched")) dsc.AppendLine(Lang.Get("usefulstuff:Quenched"));
+            if (UsefulStuffConfig.Loaded.QuenchEnabled && UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(LastCodePart()) && inSlot.Itemstack.Attributes.GetBool("quenched")) dsc.AppendLine(Lang.Get("usefulstuff:Quenched"));
         }
 
         public override bool MatchesForCrafting(ItemStack inputStack, GridRecipe gridRecipe, CraftingRecipeIngredient ingredient)
         {
             bool result = base.MatchesForCrafting(inputStack, gridRecipe, ingredient);
-            if (!UsefulStuffConfig.Loaded.QuenchEnabled || !UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(FirstCodePart(1))) return result;
+            if (!UsefulStuffConfig.Loaded.QuenchEnabled || !UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(LastCodePart())) return result;
 
             result &= !inputStack.Attributes.GetBool("quenched") || inputStack.Attributes.GetTreeAttribute("temperature")?.GetFloat("temperature") < 200;
 

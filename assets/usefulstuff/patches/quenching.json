@@ -63,6 +63,6 @@
     "op": "add",
     "path": "/class",
     "value": "ItemToolhead",
-    "file": "game:itemtypes/toolhead/longblade.json",
+    "file": "game:itemtypes/toolhead/bladehead.json",
   },
 ]
