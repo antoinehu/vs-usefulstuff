@@ -5,5 +5,5 @@
   	},
   	width: 3,
   	height: 3,
-  	output: { type: "block", code: "usefulstuff:firebox-{brick}"  }
+  	output: { type: "block", code: "usefulstuff:firebox-{brick}"}
   }

@@ -50,7 +50,7 @@
   "arrowtip-cardiac": "Toxic Coating",
   "arrowtip-tranq": "Tranquilizer Coating",
 
-  "firebox-burning": "Currently burning",
+  "firebox-burning": "{0:N1} hours left to burn.",
   "firebox-full": "Loaded and ready to be lit",
   "kiln-lock": "Cannot touch this, it is baking!",
 

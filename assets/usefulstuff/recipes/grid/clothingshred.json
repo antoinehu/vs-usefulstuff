@@ -35,13 +35,39 @@
   {
     	ingredientPattern: "KC",
     	ingredients: {
-        "C": { type: "item", code: "game:clothes-head-*"},
+        "C": { type: "item", code: "game:clothes-head-*", allowedVariants: [
+			"embroidered-coif", "fancy-head-dress", "fortune-tellers-scarf", "gem-encrusted-fur-hat",  "jailors-hat", "lackey-hat", 
+			"merchant-hat", "messengers-hat", "minstrel-hat", "noble-fillet", "peasent-head-scarf", "roll-hat", "shepherds-cowl",
+			"squire-hood", "hunter-cape", "tophat", "mianguan", "marketeer",
+			"rotwalker", "surgeon", "alchemist"]},
         "K": { type: "item", code: "game:knife-*", isTool: true}
     	},
     	width: 2,
     	height: 1,
       shapeless: true,
     	output: { type: "item", code: "game:flaxtwine", quantity: 2 }
+  },
+  {
+    	ingredientPattern: "KC",
+    	ingredients: {
+        "C": { type: "item", code: "game:clothes-head-straw-hat"},
+        "K": { type: "item", code: "game:knife-*", isTool: true}
+    	},
+    	width: 2,
+    	height: 1,
+      shapeless: true,
+    	output: { type: "item", code: "game:drygrass", quantity: 4 }
+  },
+    {
+    	ingredientPattern: "KC",
+    	ingredients: {
+        "C": { type: "item", code: "game:clothes-head-*", allowedVariants: ["bamboo-conehat", "bamboo-conehat-large"]},
+        "K": { type: "item", code: "game:knife-*", isTool: true}
+    	},
+    	width: 2,
+    	height: 1,
+      shapeless: true,
+    	output: { type: "item", code: "game:bamboostakes", quantity: 1 }
   },
   {
     	ingredientPattern: "KC",

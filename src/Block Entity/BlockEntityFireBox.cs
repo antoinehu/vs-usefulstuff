@@ -57,13 +57,17 @@ namespace UsefulStuff
                     Volume = 0.3f,
                     Range = 8
                 });
-                if (Lit) ambientSound.Start();
+                if (Lit) {
+                    this.Block.LightHsv = new byte[] { 0, 7, 8 };
+                    this.Block.VertexFlags.GlowLevel = 160;
+                    ambientSound.Start();
+                }
             }
 
             capi = api as ICoreClientAPI;
-            ms = Block.Attributes["multiblockStructure"].AsObject<MultiblockStructure>();
-            ms.InitForUse(0);
-            fuels = Block.Attributes["fuelTypes"].AsObject<Dictionary<string, int>>();
+            ms = Block.Attributes?["multiblockStructure"].AsObject<MultiblockStructure>();
+            ms?.InitForUse(0);
+            fuels = Block.Attributes?["fuelTypes"].AsObject<Dictionary<string, int>>();
             gasPlug = api.ModLoader.GetModSystem<GasHelper>();
             RegisterGameTickListener(OnGameTick, 500);
             smokeGas = new Dictionary<string, float>();
@@ -76,7 +80,7 @@ namespace UsefulStuff
         {
             if (!Lit) return;
 
-            if (GetIncomplete() > 0)
+            if (ms != null && GetIncomplete() > 0)
             {
                 Lit = false;
                 firing = new bool[18];
@@ -126,8 +130,8 @@ namespace UsefulStuff
                                 int empty = 0;
                                 foreach (ItemSlot slot in gs.Inventory)
                                 {
-                                    if (slot.Empty) { empty++;}
-                                    else if (slot.Itemstack?.Collectible.CombustibleProps?.SmeltedStack?.ResolvedItemstack != null 
+                                    if (slot.Empty) { empty++; }
+                                    else if (slot.Itemstack?.Collectible.CombustibleProps?.SmeltedStack?.ResolvedItemstack != null
                                              && slot.Itemstack.Collectible.CombustibleProps.SmeltingType == EnumSmeltType.Fire)
                                     {
                                         int orgSize = slot.Itemstack.StackSize;
@@ -171,7 +175,7 @@ namespace UsefulStuff
                 if (capi != null)
                 {
                     capi.TriggerIngameError(this, "incomplete", Lang.Get("Structure is not complete, {0} blocks are missing or wrong!", incompleteCount));
-                    ms.HighlightIncompleteParts(Api.World, player, Pos);
+                    ms?.HighlightIncompleteParts(Api.World, player, Pos);
                 }
             }
             else if (Api.Side == EnumAppSide.Client)
@@ -223,8 +227,10 @@ namespace UsefulStuff
         public void TryIgnite(IPlayer byPlayer)
         {
             if (!CanIgnite(byPlayer)) return;
+            System.Diagnostics.Debug.WriteLine("BlockEntityFireBox.TryIgnite()");
             BurningUntilTotalHours = Api.World.Calendar.TotalHours + UsefulStuffConfig.Loaded.PotKilnBurnHours;
             Lit = true;
+            MarkDirty(true);
             ambientSound?.Start();
             BlockPos tmpPos = Pos.Copy();
             int i = 0;
@@ -287,7 +293,7 @@ namespace UsefulStuff
         {
             BlockPos tmpPos = Pos.Copy();
             int remove = 0;
-            
+
             for (int x = -1; x < 2; x++)
             {
                 for (int z = -1; z < 2; z++)
@@ -296,7 +302,7 @@ namespace UsefulStuff
                     {
                         tmpPos.Set(Pos);
                         tmpPos.Add(x, y, z);
-                        if (tmpPos.X == pos.X && tmpPos.Y == pos.Y && tmpPos.Z == pos.Z) { firing[remove] = false; System.Diagnostics.Debug.WriteLine("Yes"); return; }
+                        if (tmpPos.X == pos.X && tmpPos.Y == pos.Y && tmpPos.Z == pos.Z) { firing[remove] = false; return; }
                         remove++;
                     }
                 }
@@ -305,13 +311,27 @@ namespace UsefulStuff
 
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
         {
-            if (inv[0].Empty) return false;
-
-            if (fullmesh == null)
-            {
-                capi.Tesselator.TesselateShape(Block, Api.Assets.TryGet("usefulstuff:shapes/block/firebox/full.json").ToObject<Shape>(), out fullmesh);
+            // Use 'empty.json' shape (original) for when the inventory is empty; otherwise check whether the box is lit.
+            //System.Diagnostics.Debug.WriteLine($"fullmesh = {fullmesh} -- Lit = {Lit}");
+            if (inv[0].Empty) {
+                this.Block.LightHsv = new byte[] { 0, 0, 0 };
+                this.Block.VertexFlags.GlowLevel = 0;
+                return false;
             }
 
+            else
+            {
+                if (!Lit)
+                {
+                    capi.Tesselator.TesselateShape(Block, Api.Assets.TryGet("usefulstuff:shapes/block/firebox/full.json").ToObject<Shape>(), out fullmesh);
+                }
+                else
+                {
+                    this.Block.LightHsv = new byte[] { 0, 7, 8 };
+                    this.Block.VertexFlags.GlowLevel = 160;
+                    capi.Tesselator.TesselateShape(Block, Api.Assets.TryGet("usefulstuff:shapes/block/firebox/lit.json").ToObject<Shape>(), out fullmesh);
+                }
+            }
             mesher.AddMeshData(fullmesh);
             return true;
         }
@@ -338,7 +358,7 @@ namespace UsefulStuff
             //base.GetBlockInfo(forPlayer, dsc);
             if (Lit)
             {
-                dsc.AppendLine(Lang.Get("usefulstuff:firebox-burning"));
+                dsc.AppendLine(string.Format(Lang.Get("usefulstuff:firebox-burning"), BurningUntilTotalHours - Api.World.Calendar.TotalHours));
             }
             else if (!inv[0].Empty)
             {
@@ -350,9 +370,9 @@ namespace UsefulStuff
         public int GetIncomplete()
         {
             int ignoregas = 0;
-            int inc = ms.InCompleteBlockCount(Api.World, Pos, (block, wrong) => 
-            { 
-                if (wrong.Path.Contains("air") && block.Replaceable > 9500) ignoregas++; 
+            int inc = ms.InCompleteBlockCount(Api.World, Pos, (block, wrong) =>
+            {
+                if (wrong.Path.Contains("air") && block.Replaceable > 9500) ignoregas++;
             });
 
             return inc - ignoregas;

@@ -8,7 +8,7 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"fuel": "game:block/wood/firewood/side",
+		"fire": "block/coal/ember",
 		"brick": "block/soil/mudbrick/dark1"
 	},
 	"elements": [
@@ -171,12 +171,12 @@
 			"to": [ 15.0, 12.0, 12.0 ], 
 			"rotationOrigin": [ 1.0, 4.0, 4.0 ],
 			"faces": {
-				"north": { "texture": "#fuel", "uv": [ 0.0, 0.0, 14.0, 8.0 ] },
-				"east": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-				"south": { "texture": "#fuel", "uv": [ 0.0, 0.0, 14.0, 8.0 ] },
-				"west": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-				"up": { "texture": "#fuel", "uv": [ 0.0, 0.0, 14.0, 8.0 ] },
-				"down": { "texture": "#fuel", "uv": [ 0.0, 0.0, 14.0, 8.0 ] }
+				"north": { "texture": "#fire", "uv": [ 0.0, 0.0, 14.0, 8.0 ] },
+				"east": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+				"south": { "texture": "#fire", "uv": [ 0.0, 0.0, 14.0, 8.0 ] },
+				"west": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+				"up": { "texture": "#fire", "uv": [ 0.0, 0.0, 14.0, 8.0 ] },
+				"down": { "texture": "#fire", "uv": [ 0.0, 0.0, 14.0, 8.0 ] }
 			},
 			"children": [
 				{
@@ -185,12 +185,12 @@
 					"to": [ 11.0, 8.0, 0.0 ], 
 					"rotationOrigin": [ 3.0, 0.0, -3.0 ],
 					"faces": {
-						"north": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-						"east": { "texture": "#fuel", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
-						"south": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-						"west": { "texture": "#fuel", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
-						"up": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 3.0 ] },
-						"down": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 3.0 ] }
+						"north": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+						"east": { "texture": "#fire", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
+						"south": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+						"west": { "texture": "#fire", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
+						"up": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 3.0 ] },
+						"down": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 3.0 ] }
 					}
 				},
 				{
@@ -199,12 +199,12 @@
 					"to": [ 11.0, 8.0, 11.0 ], 
 					"rotationOrigin": [ 3.0, 0.0, 8.0 ],
 					"faces": {
-						"north": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-						"east": { "texture": "#fuel", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
-						"south": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
-						"west": { "texture": "#fuel", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
-						"up": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 3.0 ] },
-						"down": { "texture": "#fuel", "uv": [ 0.0, 0.0, 8.0, 3.0 ] }
+						"north": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+						"east": { "texture": "#fire", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
+						"south": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+						"west": { "texture": "#fire", "uv": [ 0.0, 0.0, 3.0, 8.0 ] },
+						"up": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 3.0 ] },
+						"down": { "texture": "#fire", "uv": [ 0.0, 0.0, 8.0, 3.0 ] }
 					}
 				}
 			]

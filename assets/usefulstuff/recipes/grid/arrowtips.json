@@ -39,7 +39,7 @@
 			"R": { type: "item", code: "game:resin" },
 			"A": { type: "item", code: "game:arrow-*", name: "material"},
       "L": { type: "block", code: "game:flower-lilyofthevalley-*" },
-      "M": { type: "block", code: "game:mushroom-*", allowedVariants: ["deathcap", "funeralbell"] },
+      "M": { type: "block", code: "game:mushroom-*", allowedVariants: ["deathcap-normal", "funeralbell-normal-north"] },
 		},
 		width: 3,
 		height: 3,
@@ -51,7 +51,7 @@
 		ingredients: {
 			"R": { type: "item", code: "game:resin" },
 			"A": { type: "item", code: "game:arrow-*", name: "material"},
-      "F": { type: "block", code: "game:flower-*", allowedVariants : ["catmint-free", "californiapoppy-free"] },
+      "F": { type: "block", code: "game:flower-*", allowedVariants : ["catmint-free", "goldenpoppy-free"] },
 		},
 		width: 3,
 		height: 1,
