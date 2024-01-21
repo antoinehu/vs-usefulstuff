@@ -37,7 +37,7 @@ namespace UsefulStuff
 
                 if (addTo == null || addTo.Length < 1) return false;
 
-                mb.MaterialIds = mb.MaterialIds.AddRangeToArray(addTo);
+                mb.BlockIds = mb.BlockIds.AddRangeToArray(addTo);
                 mb.MarkDirty(true);
 
                 cSlot.TakeOut(1);

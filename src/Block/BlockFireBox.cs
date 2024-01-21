@@ -84,6 +84,13 @@ namespace UsefulStuff
             beb?.TryIgnite((byEntity as EntityPlayer).Player);
         }
 
+        public EnumIgniteState OnTryIgniteStack(EntityAgent byEntity, BlockPos pos, ItemSlot slot, float secondsIgniting)
+        {
+            BlockEntityFireBox beb = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityFireBox;
+            if (beb.Lit) return secondsIgniting > 4 ? EnumIgniteState.IgniteNow : EnumIgniteState.Ignitable;
+            return EnumIgniteState.NotIgnitable;
+        }
+
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
         {
             BlockEntityFireBox fb = world.BlockAccessor.GetBlockEntity(selection.Position) as BlockEntityFireBox;
