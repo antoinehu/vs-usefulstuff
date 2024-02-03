@@ -4,7 +4,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -22,7 +22,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -57,7 +57,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -75,7 +75,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -110,7 +110,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -128,7 +128,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -163,7 +163,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -181,7 +181,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -216,7 +216,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -234,7 +234,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -269,7 +269,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -287,7 +287,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -322,7 +322,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 1
@@ -340,7 +340,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 1
@@ -359,7 +359,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -377,7 +377,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -412,7 +412,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -430,7 +430,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -465,7 +465,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -483,7 +483,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -518,7 +518,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -536,7 +536,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -571,7 +571,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -589,7 +589,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -624,7 +624,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -642,7 +642,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -677,7 +677,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -712,7 +712,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{material}",
           "quantity": 10
@@ -747,7 +747,7 @@
     "path": "/grindingPropsByType",
     "value": {
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
-        "grindedStack": {
+        "GroundStack": {
           "type": "item",
           "code": "game:metalbit-{metal}",
           "quantity": 10
@@ -775,5 +775,5 @@
       "when": "UStoolRecyclingEnabled",
       "isValue": "true"
     }
-  },
+  }
 ]

@@ -52,8 +52,6 @@ namespace UsefulStuff
         {
             get { return AssetLocation.toLocations(Block.Attributes["badFood"].AsArray<string>(new string[0])); }
         }
-
-
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
@@ -70,10 +68,10 @@ namespace UsefulStuff
             Room place = inn.GetRoomForPosition(Pos);
             if (place == null) { noroom = true; return; }
 
-            Api.World.BlockAccessor.WalkBlocks(new BlockPos(place.Location.MinX, place.Location.MinY, place.Location.MinZ), new BlockPos(place.Location.MaxX, place.Location.MaxY, place.Location.MaxZ),
+            Api.World.BlockAccessor.WalkBlocks(new BlockPos(place.Location.MinX, place.Location.MinY, place.Location.MinZ, 0), new BlockPos(place.Location.MaxX, place.Location.MaxY, place.Location.MaxZ, 0),
                 (block, posX, posY, posZ) =>
                 {
-                    if (block.Code.Path == Block.Code.Path && new BlockPos(posX, posY, posZ) != Pos)
+                    if (block.Code.Path == Block.Code.Path && new BlockPos(posX, posY, posZ, 0) != Pos)
                     {
                         Api.World.BlockAccessor.BreakBlock(Pos, null);
                     }
@@ -90,9 +88,9 @@ namespace UsefulStuff
             //System.Diagnostics.Debug.WriteLine(place.ExitCount);
             Entity tenant = haveTenant();
 
-            if (place == null) noroom = true; else noroom = false;
-            if (hasBed(place.Location)) nobed = false; else nobed = true;
-            if (hasFood(place.Location)) nofood = false; else nofood = true;
+            noroom = place == null;
+            nobed = !hasBed(place.Location);
+            nofood = !hasFood(place.Location);
 
             if ((nobed || noroom) && tenant != null) { evictTenant(); nextTenantIn = Api.World.Rand.Next(minTravelDays, maxTravelDays + 1) * 24; }
 
@@ -141,7 +139,6 @@ namespace UsefulStuff
             {
                 dsc.AppendLine(Lang.Get("No food for next guest!"));
             }
-
 
             if (!occupied && nextTenantIn >= 24)
             {
@@ -205,11 +202,6 @@ namespace UsefulStuff
 
                 return true;
             });
-
-
-
-
-
             return result;
         }
 
@@ -219,8 +211,7 @@ namespace UsefulStuff
             {
                 if (eid == search.EntityId)
                 {
-                    EntityTrader trader;
-                    if (enjoyedStay && Api.Side == EnumAppSide.Server && (trader = search as EntityTrader) != null && search.Alive)
+                    if (enjoyedStay && Api.Side == EnumAppSide.Server && search is EntityTrader trader && search.Alive)
                     {
                         DummySlot giftslot = new DummySlot(gifts[Api.World.Rand.Next(gifts.Length)]);
 
@@ -234,7 +225,10 @@ namespace UsefulStuff
 
                             if (!giftslot.Empty) Api.World.SpawnItemEntity(giftslot.Itemstack, Pos.ToVec3d().Add(0.5, 0.5, 0.5));
                         }
-                        else Api.World.SpawnItemEntity(giftslot.Itemstack, Pos.ToVec3d().Add(0.5, 0.5, 0.5));
+                        else
+                        {
+                            Api.World.SpawnItemEntity(giftslot.Itemstack, Pos.ToVec3d().Add(0.5, 0.5, 0.5));
+                        }
                     }
 
                     search.Die(EnumDespawnReason.Removed);
@@ -251,7 +245,7 @@ namespace UsefulStuff
         {
             bool result = false;
             // Return false to SearchBlocks to stop search. Otherwise continue search.
-            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
+            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ, 0), new BlockPos(area.MaxX, area.MaxY, area.MaxZ, 0),
                 (block, blockpos) =>
                 {
                     if (block.Code.BeginsWith("game", "bed"))
@@ -262,7 +256,6 @@ namespace UsefulStuff
                     return true;
                 });
 
-
             return result;
         }
 
@@ -271,7 +264,7 @@ namespace UsefulStuff
             bool result = false;
             // int checked2 = 0;
             // Return false to SearchBlocks to stop search. Otherwise continue search.
-            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
+            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ, 0), new BlockPos(area.MaxX, area.MaxY, area.MaxZ, 0),
                 (block, blockpos) =>
                 {
                     // checked2++;

@@ -40,7 +40,6 @@ namespace UsefulStuff
 
                 if (yVector <= UsefulStuffConfig.Loaded.GliderMaxStall && yVector >= UsefulStuffConfig.Loaded.GliderMinStall)
                 {
-
                     //Every 16x16 block columm is a heat columm
                     double windBonus = 0;
                     if ((byEntity.SidedPos.AsBlockPos.X / 16) % 2 == 0 && (byEntity.SidedPos.AsBlockPos.Z / 16) % 2 == 0)

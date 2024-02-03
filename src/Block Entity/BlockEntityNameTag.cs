@@ -17,9 +17,9 @@ namespace UsefulStuff
         int tempColor;
         ItemStack tempStack;
 
-        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
         {
-            base.FromTreeAttributes(tree, worldForResolving);
+            base.FromTreeAttributes(tree, worldAccessForResolve);
             color = tree.GetInt("color");
             if (color == 0) color = ColorUtil.BlackArgb;
 
@@ -33,15 +33,14 @@ namespace UsefulStuff
             tree.SetString("text", text);
         }
 
-        public override void OnReceivedClientPacket(IPlayer player, int packetid, byte[] data)
+        public override void OnReceivedClientPacket(IPlayer fromPlayer, int packetid, byte[] data)
         {
             if (packetid == (int)EnumSignPacketId.SaveText)
             {
                 using (MemoryStream ms = new MemoryStream(data))
                 {
                     BinaryReader reader = new BinaryReader(ms);
-                    text = reader.ReadString();
-                    if (text == null) text = "";
+                    text = reader.ReadString() ?? "";
                 }
 
                 color = tempColor;
@@ -55,18 +54,18 @@ namespace UsefulStuff
                 MarkDirty(true);
 
                 // Tell server to save this chunk to disk again
-                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos.X, Pos.Y, Pos.Z).MarkModified();
+                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos).MarkModified();
 
                 // 0% chance to get back the item
                 if (text == "")
                 {
-                    player.InventoryManager.TryGiveItemstack(tempStack);
+                    fromPlayer.InventoryManager.TryGiveItemstack(tempStack);
                 }
             }
 
             if (packetid == (int)EnumSignPacketId.CancelEdit && tempStack != null)
             {
-                player.InventoryManager.TryGiveItemstack(tempStack);
+                fromPlayer.InventoryManager.TryGiveItemstack(tempStack);
                 tempStack = null;
             }
         }
@@ -81,8 +80,7 @@ namespace UsefulStuff
 
                     string dialogClassName = reader.ReadString();
                     string dialogTitle = reader.ReadString();
-                    text = reader.ReadString();
-                    if (text == null) text = "";
+                    text = reader.ReadString() ?? "";
 
                     IClientWorldAccessor clientWorld = (IClientWorldAccessor)Api.World;
 
@@ -91,13 +89,11 @@ namespace UsefulStuff
 
                     dlg.OnCloseCancel = () =>
                     {
-                        (Api as ICoreClientAPI).Network.SendBlockEntityPacket(Pos.X, Pos.Y, Pos.Z, (int)EnumSignPacketId.CancelEdit, null);
+                        (Api as ICoreClientAPI)?.Network.SendBlockEntityPacket(Pos.X, Pos.Y, Pos.Z, (int)EnumSignPacketId.CancelEdit, null);
                     };
                     dlg.TryOpen();
                 }
             }
-
-
             if (packetid == (int)EnumSignPacketId.NowText)
             {
                 using (MemoryStream ms = new MemoryStream(data))
@@ -124,8 +120,6 @@ namespace UsefulStuff
                     tempColor = ColorUtil.ToRgba(255, r, g, b);
                     tempStack = hotbarSlot.TakeOut(1);
                     hotbarSlot.MarkDirty();
-
-
                     if (Api.World is IServerWorldAccessor)
                     {
                         byte[] data;
@@ -161,7 +155,7 @@ namespace UsefulStuff
         {
             base.GetBlockInfo(forPlayer, dsc);
 
-            if (text != null && text != "")
+            if (!string.IsNullOrEmpty(text))
             {
                 dsc.AppendLine(Lang.Get("usefulstuff:nametag-name"));
                 dsc.AppendLine(text);
@@ -171,6 +165,5 @@ namespace UsefulStuff
                 dsc.AppendLine(Lang.Get("usefulstuff:nametag-erase"));
             }
         }
-
     }
 }
