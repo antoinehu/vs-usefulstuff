@@ -45,7 +45,7 @@ namespace UsefulStuff
                 bool canPack = true;
 
                 byEntity.World.BlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) => {
-                    BlockPos pos = new BlockPos(posX, posY, posZ);
+                    BlockPos pos = new BlockPos(posX, posY, posZ, 0);
                     if (!canPack) return;
                     if (byPlayer != null && !byEntity.World.Claims.TryAccess(byPlayer, pos, EnumBlockAccessFlags.BuildOrBreak))
                     {
@@ -58,7 +58,6 @@ namespace UsefulStuff
                         if (byEntity.World.Api is ICoreClientAPI capi)
                         {
                             capi.TriggerIngameError(this, "cannotpack", Lang.Get("usefulstuff:Cannot pack {0} in a bag!", block.GetPlacedBlockName(byEntity.World, pos)));
-
                         }
                         return;
                     }
@@ -80,7 +79,7 @@ namespace UsefulStuff
                     byEntity.World.SpawnItemEntity(packed, blockSel.Position.ToVec3d().Add(0, 1, 0));
 
                     end.Add(-1, -1, -1);
-                    byEntity.World.BulkBlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) => { if (block.BlockId != 0) byEntity.World.BulkBlockAccessor.SetBlock(0, new BlockPos(posX, posY, posZ)); });
+                    byEntity.World.BulkBlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) => { if (block.BlockId != 0) byEntity.World.BulkBlockAccessor.SetBlock(0, new BlockPos(posX, posY, posZ, 0)); });
                     byEntity.World.BulkBlockAccessor.Commit();
                     slot.TakeOutWhole();
                     byEntity.ReceiveSaturation(-UsefulStuffConfig.Loaded.TentBuildEffort);
@@ -94,7 +93,7 @@ namespace UsefulStuff
 
                 byEntity.World.BlockAccessor.WalkBlocks(start, end, (block, posX, posY, posZ) =>
                 {
-                    BlockPos pos = new BlockPos(posX, posY, posZ);
+                    BlockPos pos = new BlockPos(posX, posY, posZ, 0);
                     if (!canPlace) return;
                     if (byPlayer != null && !byEntity.World.Claims.TryAccess(byPlayer, pos, EnumBlockAccessFlags.BuildOrBreak))
                     {
@@ -107,7 +106,6 @@ namespace UsefulStuff
                         if (byEntity.World.Api is ICoreClientAPI capi)
                         {
                             capi.TriggerIngameError(this, "cannotpack", Lang.Get("usefulstuff:Cannot unpack here, need solid ground!"));
-
                         }
                         return;
                     }
@@ -117,7 +115,6 @@ namespace UsefulStuff
                         if (byEntity.World.Api is ICoreClientAPI capi)
                         {
                             capi.TriggerIngameError(this, "cannotpack", Lang.Get("usefulstuff:Cannot unpack here, need a clear area!"));
-
                         }
                         return;
                     }
@@ -139,7 +136,6 @@ namespace UsefulStuff
                     byEntity.ReceiveSaturation(-UsefulStuffConfig.Loaded.TentBuildEffort);
                 }
             }
-
         }
 
         public bool FindMatchCode(AssetLocation needle, AssetLocation[] haystack)
