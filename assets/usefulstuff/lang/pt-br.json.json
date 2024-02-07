@@ -1,0 +1,134 @@
+{
+  "item-shield-crude-square-wicker" : "Wicker Shield",
+  "item-shield-pelt" : "Escudo de Pele",
+  "item-shield-leather" : "Escudo de Couro",
+  "item-shield-linen" : "Escudo Composto",
+  "item-tentbag-empty" : "Bolsa de tenda vazia",
+  "item-tentbag-packed" : "Bolsa de tenda cheia",
+  "item-climbingpick-iron" : "Piolet de ferro",
+  "item-climbingpick-meteoriciron" : "Piolet de ferro meteorítico",
+  "item-climbingpick-steel" : "Piolet de aço",
+  "item-glider" : "Planador",
+  "item-nametag" : "Tableta",
+  "item-gasmask" : "Máscara de Gás",
+
+  "block-climbingrope-start-*": "Âncora de Corda",
+  "block-climbingrope-section-*": "Corda de Escalada",
+  "block-sluice-*": "Calha de Mineração",
+  "block-omnichute-*" : "Calha dobrável",
+  "block-firebox-light" : "Fornalha (Clara)",
+  "block-firebox-dark" : "Fornalha (Escura)",
+  "block-nametag-raw" : "Tableta crua",
+  "block-nametag-burned" : "Tabuleta de cerâmica",
+  "block-potteryholder" : "Cerâmica pronta",
+  "block-chiselbench-*" : "Mesa de Cinzelamento",
+
+  "blockdesc-omnichute-*" : "Uma calha que pode facilmente se dobrar para onde você precisa.",
+  "blockdesc-nametag-*" : "Uma tabuleta útil para escrever os nomes de coisas importantes.",
+  "blockdesc-tentbag-empty" : "Uma bolsa de tenda completamente vazia, precisa colocar alguma coisa nela.",
+  "blockdesc-tentbag-packed" : "Uma bolsa de tenda cheia, pronta para aventuras!",
+
+
+  "blockhelp-anchor-deploy": "Soltar Corda",
+  "blockhelp-anchor-retract": "Recolher Corda",
+  "blockhelp-breakdown" : "Restaurar",
+  "blockhelp-addmat" : "Adicionar Material",
+
+  "itemhelp-shield": "Bloquear",
+  "itemhelp-glider-airbrake" : "Freios aéreos",
+  "heldhelp-nameentity" : "Nomear Entidade/Apagar o Nome da Entidade",
+  "heldhelp-nameitem" : "Nomear Item/Apagar Nome do Item",
+
+  "Cannot pack {0} in a bag!": "Não pode colocar {0} na bolsa!",
+  "Cannot unpack here, need solid ground!" : "Não pode abrir aqui, precisa de chão sólido!",
+  "Cannot unpack here, need a clear area!" : "Não pode abrir aqui, precisa de uma área limpa!",
+  "Quenched" : "Temperado, deve estar abaixo de 200 graus para ser usado para criar algo",
+
+  "arrowtip-explosive": "Carga Explosiva Carregada",
+  "arrowtip-incendiary": "Incendiária",
+  "arrowtip-beenade": "Granadabelha carregada",
+  "arrowtip-cardiac": "Envenenada",
+  "arrowtip-tranq": "Tranquilizante",
+
+  "firebox-burning": "{0:N1} houras restantes.",
+  "firebox-full": "Carregada e pronta para ser acesa",
+  "kiln-lock": "Não dá para tocar nisso, está assando!",
+
+  "imprinton" : "Pronto para nomear item!",
+  "imprintoff" : "Nomeação de item desligada.",
+  "eraseon" : "Pronto para apagar o nome do item!",
+  "eraseoff" : "Remoção de nome desligada.",
+  "nametag-name" : "Nome atual: ",
+  "nametag-erase" : "Sem nome atual, apagará nomes.",
+  "usefulstuffguide-title" : "Guia de Coisas Úteis",
+  "usefulstuffguide-text" : "<strong>Um guia para usar coisas úteis</strong>
+Aqui estão algumas dicas e lembretes para usar o mod Useful Stuff. Nota: Este guia foi feito com as configurações padrão em mente. Se alguma coisa não bater com o guia, ou se há um item/bloco indisponível, verifique a configuração para ver se foi desabilitado ou entre em contato com o administrador do servidor.
+
+<strong>Escudos de Vime</strong>
+Removidos.
+
+<strong>Calha de Mineração</strong>
+A <a href=\"handbook://block-usefulstuff:sluice-north\">calha de mineração</a> pode separar minérios e coisas valiosas de qualquer solo/bloco garimpável, o que significa que você não precisa passar horas até os joelhos em água enchendo seu inventário com lixo para encontrar coisas valiosas. Para usar a calha, primeiro você precisa de um fluxo de água, o nível mais baixo que puder alcançar. Coloque a calha abaixo da correnteza, e se feito corretamente você verá água fluindo por ela. Coloque um funil acima da calha e encha com solos garimpáveis, como areia, cascalho, etc, e pronto! Itens separados caem na frente dela. Mantenha em mente que isto apenas dá potencialmente um item por bloco se comparado às oito chances do garimpo manual.
+
+<strong>Bolsa de Tenda</strong>
+A <a href=\"handbook://item-usefulstuff:tentbag-empty\">bolsa de tenda</a> permite que o jogador crie uma estrutura temporária e a carregue consigo, fazendo com que um estilo de vida nômade seja possível mesmo nos terrenos mais hostis. Crie uma estrutura dentro de uma área de 7X3X7 e interaja <icon>rightmousebutton</icon> com o chão abaixo da estrutura no centro para guardá-la. O chão não conta e não é incluído! Não podem haver blocos banidos na área (rocha, translocadores, etc.) e containers e pilhas de itens vão soltar seu conteúdo quando tudo for empacotado. Para desempacotar, você precisa de uma área plana de 7x7 e uma área limpa de 7x3x7 acima disso. Interaja <icon>rightmousebutton</icon> no bloco abaixo do centro para armar. O custo para empacotar e desempacotar a tenda é de 100 de saturação.
+
+<strong>Piolets</strong>
+<a href=\"handbooksearch://climbing pick\">Piolets</a>, ou \"picaretas de escalada\", permitem que você escale qualquer bloco ou superfície. Só podem ser feitos de materiais ferrosos ou superiores e requerem que você tenha duas, uma em cada mão, para que possa escalar. Escalar com elas vai lentamente danificá-las com o tempo, e elas podem ser reparadas com o Rebolo do mod Necessaries. Não vai funcionar perto de um chefe.
+
+<strong>Planador</strong>
+Este <a href=\"handbook://item-usefulstuff:glider\">planador</a> montado de forma amadora pode ajudar a atravessar áreas montanhosas muito mais rápido. Muito cuidado e atenção são necessários para não aterrisar com muita força ou no local errado. Pule de um penhasco ou parapeito com o planador em mãos para planar. Olhe para onde quer ir e aperte espaço para cair normalmente. Não segure espaço. Olhar para baixo fará com que você desça mais rápido, mas te dará muita velocidade horizontal. Mirar no horizonte fará com que você desça mais devagar, enquanto olhar para cima vai te desacelerar horizontalmente e até fazer com que vá para trás. Olhar demais para cima fará com que você pare, perca todo o seu impulso e caia no chão. Existem correntes ascendentes pelo mundo que vão ajudar você a manter o vôo. Planadores não podem ser usados em cavernas.
+
+<strong>Calhas dobráveis</strong>
+Preparando funis e precisa de uma orientação que o jogo não suporta? Agora é possível com <a href=\"handbook://block-usefulstuff:omnichute-ns\">calhas dobráveis!</a> Criada com duas sessões de calha e uma engrenagem enferrujada. Vai se ligar automaticamente a outra calha dobrável ou container.
+
+<strong>Flechas especiais</strong>
+Dê às suas flechas uma força extra, adicionando uma ponta especial a elas!
+ - Flechas Explosivas
+Criada ao colocar uma bomba de explosão de minérios e uma flecha na grade de construção. Explode no impacto e destrói a flecha
+ - Flechas de Fogo
+Criada ao colocar uma tocha acesa, gordura e uma flecha na grade de construção. Incendeia entidades no impacto e perde a ponta de tocha
+ - Flechas de Granadabelha
+Criada ao colocar uma granadabelha cheia e uma flecha na grade de construção. Libera 1-2 enchames de abelhas no impacto e perde a ponta
+ - Flechas Tranquilizantes
+Criada ao colocar uma flecha, resina e Papoula-da-Califórnia ou Erva-dos-gatos na grade de construção. Desacelera o alvo em 10% por acerto, e acertos múltiplos podem parar seus movimentos. (Nota: Entidades hostis ainda podem atacar e pular). Dura 1 hora dentro do jogo. Não faz efeito em inimigos mecânicos
+ - Flechas Enveneadas
+Criada ao colocar uma flecha, resina, Capuz da Morte ou Sino-de-funeral e Lírio-do-vale na grade de construção. Depois de 1 hora dentro do jogo, dá 75% da vida máxima do animal como dano. O efeito não é somável. Não faz efeito em inimigos mecânicos
+
+<strong>Forno para Cerâmica</strong>
+Esta estrutura multi-bloco pode assar múltiplas peças de cerâmica de uma vez, Usando menos tempo e recursos que o forno de cova. Primeiro você deve criar uma <a href=\"handbooksearch://firebox\">fornalha</a> com tijolos de barro. Então coloque-a no chão e interaja <icon>rightmousebutton</icon> com ela. Use tijolos de barro para construí-lo. Todas as quatro entradas de ar e o respiradouro no topo devem estar livres para que ele funcione corretamente. Quando terminar de construí-lo, coloque peças de cerâmica no chão interno à volta do respiradouro e insira exatamente 32 unidades de lenha, ou 8 carvões e acenda. Por padrão, vai demorar 12 horas para que asse tudo. Durante este tempo, você não pode alterar os itens que estão sendo processados. Além do mais, itens colocados depois da fornalha acesa não vão assar. Por fim, quebrar a estrutura ou obstruir qualquer uma das entradas de ar ou respiradouro irá parar o processo. (Não deixe grama crescer nas entradas de ar). Você saberá que terminou quando não houver fumaça saindo da chaminé.
+
+<strong>Tabuleta de Cerâmica</strong>
+A <a href=\"handbooksearch://tablet\">tabuleta de cerâmica</a> pode ser usada para escrever os nomes de itens e entidades que são únicas para você. Quando você tiver uma tabuleta pronta, coloque-a no chão e <icon>rightmousebutton</icon> com um pigmento para escrever um nome. Quando você terminar de escrever, salve e pegue-a. Para designar o nome a uma entidade, shift + <icon>rightmousebutton</icon> na entidade. Isto não vai funcionar com vendedores e outros jogadores! Para nomear um item, primeiro use ctrl + shift + <icon>rightmousebutton</icon> e você verá uma mensagem apareceer no registro de informações. Pegue o item que você quiser nomear e troque-o com a tabuleta, e você deve notar outra mensagem se tiver sucesso. Quando nomear uma entidade ou item, o nome será apagado da tabuleta. Uma tabuleta sem nome pode ser usada para apagar nomes, e você deve fazer isto da mesma forma que quando for nomear alguma coisa. Nota: Para itens o nome será perdido se ele for transformado, por exemplo asar carne. Um bloco nomeado também perde seu nome ao ser colocado. Por fim, alguns itens não podem ser nomeados, como minérios por exemplo.
+
+<strong>Mesa de Cinzelamento</strong>
+A <a href=\"handbook://block-usefulstuff:chiselbench-north\">mesa de cinzelamento</a> pode ser usada para adicionar rapidamente materiais para uma peça cinzelada ou devolver os blocos que ela tinha originalmente. Para utilizar, coloque um bloco cinzelado sobre a mesa. Para adicionar um material, <icon>rightmousebutton</icon> com um cinzel no bloco que quiser adicionar primeiro. Então pegue-o e <icon>rightmousebutton</icon> na mesa de cinzelamento para adicionar este material à sua peça a ser trabalhada. Para restaurar um bloco cinzelado de volta aos seus blocos originais, apenas aperte shift + <icon>rightmousebutton</icon> com um cinzel na mesa e os blocos vão cair de cima da mesa.
+
+<strong>Tapete de Boas-Vindas</strong>
+O <a href=\"handbook://block-usefulstuff:welcomemat\">tapete de moas-vindas</a> torna uma sala própria para que mercadores viajantes se acomodem. Apenas coloque o tapete numa sala com uma cama e um container de armazenamento com comida (por exemplo <a href=\"handbooksearch://chest\">baú</a>, <a href=\"handbooksearch://basket\">cesta</a>, <a href=\"handbooksearch://storage vessel\">recipiente de armazenamento</a>...). Mercadores não virão a menos que haja uma cama e um recipiente com comida. Não é possível colocar mais de um tapete na mesma sala. Visitantes consumirão comida e deixarão para trás um presente quando partirem, ou no baú com comida, ou sobre o tapete se o recipiente estiver cheio.
+
+<strong>Presilha para Lampião</strong>
+<a href=\"handbooksearch://lantern\">Lampiões</a> podem ser presos numa <a href=\"handbooksearch://backpack\">mochila</a> para liberar suas mãos. A mochila do seu primeiro slot deve ser um item de mochila (Mochila de caçador, mochila de couro, ou as mochilas do mod ABCS) e a lanterna deve ser colocada no primeiro slot de inventário, em cima à esquerda. Precisa ser um lampião vanilla, uma lanterna de madeira do Primitive Survival, ou um lampião do mod MoreClasses para funcionar.
+
+<strong>Máscara de Gás</strong>
+A máscara de gás é um item que funciona com o mod Asphyxia. Quando o usuário a coloca no slot de máscara, ela o protegerá dos efeitos tóxicos de dióxido de nitrogênio, dióxido de enxofre, poeira de carvão, e poeira de sílica. Ela tomará dano enquanto é usada, e não oferecerá proteção alguma se for completamente desgastada. Use carvão para encher o filtro como você usaria linho para repará-la.
+
+<strong>Outras coisas úteis para saber</strong>
+ - O Pulverizador pode quebrar algumas rochas em areia, e transformará argilito em argila refratária
+ - Cabeças de ferramentas e ferramentas em si podem ser moídas em pedaços de metal no moinho manual. Ferramentas de metal vão gerar pedaços de metal quando quebrarem (atenção a usuários de Anvil Metal Recovery)
+ - Cabeças de ferramentas de ferro e aço podem ser jogadas na água enquanto estiverem quentes para temperá-las e dar a elas durabilidade extra.
+ - Roupas podem ser recicladas em fios de linho ou couro ao serem colocadas na grade de criação com uma faca.
+",
+
+
+"block-welcomemat" : "Tapete de Boas-Vindas",
+
+"blockdesc-welcomemat" : "Convide vendedores cansados para uma noite de descanso e comércio.",
+"Not built right!": "Não foi construído direito!",
+"No place to rest!": "Não há local para dormir!",
+"No food for next guest!": "Não há comida para o próximo convidado!",
+"Another merchant arrives in {0} days": "Outro comerciante chegará em {0} dias",
+"Another merchant arrives in less than a day": "Outro comerciante chegará em menos de um dia",
+"Merchant leaves in {0} days": "Comerciante partirá em {0} dias",
+"Merchant leaves in less than a day": "Comerciante partirá em menos de um dia",
+}
