@@ -9,7 +9,7 @@ namespace UsefulStuff
             base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling, ref handling);
 
             handHandling = EnumHandHandling.PreventDefault;
-            if (blockSel != null && byEntity.World.BlockAccessor.GetDecors(blockSel.Position)[blockSel.Face.Index] != null)
+            if (blockSel != null && byEntity.World.BlockAccessor.GetSubDecors(blockSel.Position)[blockSel.Face.Index] != null)
             {
                 byEntity.World.BlockAccessor.BreakDecor(blockSel.Position, blockSel.Face);
                 byEntity.World.BlockAccessor.MarkChunkDecorsModified(blockSel.Position);

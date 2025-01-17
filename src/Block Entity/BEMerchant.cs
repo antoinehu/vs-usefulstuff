@@ -192,7 +192,7 @@ namespace UsefulStuff
         {
             Entity result = null;
 
-            entityUtil.WalkInteractableEntities(Pos.ToVec3d(), 48, (search) =>
+            entityUtil.WalkEntities(Pos.ToVec3d(), 48, (search) =>
             {
                 if (eid == search.EntityId && search.Alive)
                 {
@@ -201,13 +201,13 @@ namespace UsefulStuff
                 }
 
                 return true;
-            });
+            }, EnumEntitySearchType.Creatures);
             return result;
         }
 
         public void evictTenant(bool enjoyedStay = false)
         {
-            entityUtil.WalkInteractableEntities(Pos.ToVec3d(), 48, (search) =>
+            entityUtil.WalkEntities(Pos.ToVec3d(), 48, (search) =>
             {
                 if (eid == search.EntityId)
                 {
@@ -236,7 +236,7 @@ namespace UsefulStuff
                 }
 
                 return true;
-            });
+            }, EnumEntitySearchType.Creatures);
 
             occupied = false;
         }
