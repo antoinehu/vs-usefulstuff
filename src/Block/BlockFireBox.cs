@@ -63,7 +63,6 @@ namespace UsefulStuff
                 (byPlayer as IClientPlayer)?.TriggerFpAnimation(EnumHandInteract.HeldItemInteract);
                 return true;
             }
-            return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
 
         public EnumIgniteState OnTryIgniteBlock(EntityAgent byEntity, BlockPos pos, float secondsIgniting)

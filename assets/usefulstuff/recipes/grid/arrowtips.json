@@ -2,7 +2,7 @@
   {
 		ingredientPattern: "C,A",
 		ingredients: {
-			"C": { type: "block", code: "game:oreblastingbomb" },
+			"C": { type: "block", code: "game:bomb-ore" },
 			"A": { type: "item", code: "game:arrow-*", name: "material"}
 		},
 		width: 1,
