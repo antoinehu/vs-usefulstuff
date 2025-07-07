@@ -111,8 +111,8 @@ namespace UsefulStuff
             ambientSound?.Stop();
 
             BlockPos tmpPos = Pos.UpCopy(2);
-            Api.World.BlockAccessor.SetBlock(Api.World.GetBlock(new AssetLocation("usefulstuff:potteryholder")).BlockId, tmpPos);
-            BlockEntityContainer bc = Api.World.BlockAccessor.GetBlockEntity(tmpPos) as BlockEntityContainer;
+            //Api.World.BlockAccessor.SetBlock(Api.World.GetBlock(new AssetLocation("usefulstuff:potteryholder")).BlockId, tmpPos);
+            //BlockEntityContainer bc = Api.World.BlockAccessor.GetBlockEntity(tmpPos) as BlockEntityContainer;
 
             for (int x = -1; x < 2; x++)
             {
@@ -130,27 +130,16 @@ namespace UsefulStuff
                                 int empty = 0;
                                 foreach (ItemSlot slot in gs.Inventory)
                                 {
-                                    if (slot.Empty) { empty++; }
-                                    else if (slot.Itemstack?.Collectible.CombustibleProps?.SmeltedStack?.ResolvedItemstack != null
-                                             && slot.Itemstack.Collectible.CombustibleProps.SmeltingType == EnumSmeltType.Fire)
-                                    {
-                                        int orgSize = slot.Itemstack.StackSize;
-                                        ItemStack burned = slot.Itemstack.Collectible.CombustibleProps.SmeltedStack.ResolvedItemstack.Clone();
-                                        burned.StackSize = orgSize;
-                                        slot.TakeOutWhole();
-                                        slot.MarkDirty();
-                                        empty++;
+                                    if (slot.Empty) continue;
+                                    ItemStack rawStack = slot.Itemstack;
+                                    ItemStack firedStack = rawStack.Collectible.CombustibleProps?.SmeltedStack?.ResolvedItemstack;
 
-                                        foreach (ItemSlot holder in bc.Inventory)
-                                        {
-                                            if (holder.Empty)
-                                            {
-                                                holder.Itemstack = burned;
-                                                holder.MarkDirty();
-                                                break;
-                                            }
-                                        }
+                                    if (firedStack != null)
+                                    {
+                                        slot.Itemstack = firedStack.Clone();
+                                        slot.Itemstack.StackSize = rawStack.StackSize / rawStack.Collectible.CombustibleProps.SmeltedRatio;
                                     }
+                                    slot.MarkDirty();
                                 }
 
                                 if (empty >= 4) Api.World.BlockAccessor.SetBlock(0, tmpPos); else gs.MarkDirty(true);
@@ -358,7 +347,11 @@ namespace UsefulStuff
             //base.GetBlockInfo(forPlayer, dsc);
             if (Lit)
             {
+                try{ 
                 dsc.AppendLine(string.Format(Lang.Get("usefulstuff:firebox-burning"), BurningUntilTotalHours - Api.World.Calendar.TotalHours));
+                    }
+                catch (System.Exception e) {
+                }
             }
             else if (!inv[0].Empty)
             {

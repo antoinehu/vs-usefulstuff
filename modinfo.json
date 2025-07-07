@@ -5,9 +5,9 @@
   "authors": [ "jakecool19", "Stahl" ],
   "contributors": [ "DArkHekRoMaNT" , "Hexedian"],
   "description": "Continuation of jakecool19's' Useful Stuff.",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "website": "https://github.com/antoinehu/vs-usefulstuff",
   "dependencies": {
-    "game": "1.20.0-rc.9"
+    "game": "1.20.12"
   }
 }
