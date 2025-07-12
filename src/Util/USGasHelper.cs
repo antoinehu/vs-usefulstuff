@@ -317,11 +317,11 @@ namespace UsefulStuff
             BlockPos curPos = pos.Copy();
             BlockFacing[] faces = BlockFacing.ALLFACES;
 
-            for (int x = bounds.MinX / blockAccessor.ChunkSize; x <= bounds.MaxX / blockAccessor.ChunkSize; x++)
+            for (int x = bounds.MinX / GlobalConstants.ChunkSize; x <= bounds.MaxX / GlobalConstants.ChunkSize; x++)
             {
-                for (int y = bounds.MinY / blockAccessor.ChunkSize; y <= bounds.MaxY / blockAccessor.ChunkSize; y++)
+                for (int y = bounds.MinY / GlobalConstants.ChunkSize; y <= bounds.MaxY / GlobalConstants.ChunkSize; y++)
                 {
-                    for (int z = bounds.MinZ / blockAccessor.ChunkSize; z <= bounds.MaxZ / blockAccessor.ChunkSize; z++)
+                    for (int z = bounds.MinZ / GlobalConstants.ChunkSize; z <= bounds.MaxZ / GlobalConstants.ChunkSize; z++)
                     {
                         IWorldChunk chunk = blockAccessor.GetChunk(x, y, z);
 
@@ -334,7 +334,7 @@ namespace UsefulStuff
             }
             if (chunks.Count < 1) return result;
 
-            Vec3i originChunkVec = new Vec3i(pos.X / blockAccessor.ChunkSize, pos.Y / blockAccessor.ChunkSize, pos.Z / blockAccessor.ChunkSize);
+            Vec3i originChunkVec = new Vec3i(pos.X / GlobalConstants.ChunkSize, pos.Y / GlobalConstants.ChunkSize, pos.Z / GlobalConstants.ChunkSize);
             if (chunks[originChunkVec] == null) return null;
             checkQueue.Enqueue(pos.ToVec3i());
             markedPositions.Add(pos.Copy());
@@ -356,7 +356,7 @@ namespace UsefulStuff
             while (checkQueue.Count > 0)
             {
                 Vec3i bpos = checkQueue.Dequeue();
-                Vec3i parentChunkVec = new Vec3i(bpos.X / blockAccessor.ChunkSize, bpos.Y / blockAccessor.ChunkSize, bpos.Z / blockAccessor.ChunkSize);
+                Vec3i parentChunkVec = new Vec3i(bpos.X / GlobalConstants.ChunkSize, bpos.Y / GlobalConstants.ChunkSize, bpos.Z / GlobalConstants.ChunkSize);
 
                 Block parent = null;
                 IWorldChunk parentChunk = chunks[parentChunkVec];
@@ -371,7 +371,7 @@ namespace UsefulStuff
                     if (!bounds.Contains(curPos) || markedPositions.Contains(curPos)) continue;
                     if (curPos.Y < 0 || curPos.Y > blockAccessor.MapSizeY) continue;
 
-                    Vec3i curChunkVec = new Vec3i(curPos.X / blockAccessor.ChunkSize, curPos.Y / blockAccessor.ChunkSize, curPos.Z / blockAccessor.ChunkSize);
+                    Vec3i curChunkVec = new Vec3i(curPos.X / GlobalConstants.ChunkSize, curPos.Y / GlobalConstants.ChunkSize, curPos.Z / GlobalConstants.ChunkSize);
                     int chunkBid = toLocalIndex(curPos);
                     Block atPos = null;
                     IWorldChunk chunk = chunks[curChunkVec];
@@ -434,7 +434,7 @@ namespace UsefulStuff
         //Gives the local index for a block in its chunk
         int toLocalIndex(BlockPos pos)
         {
-            return MapUtil.Index3d(pos.X % api.World.BlockAccessor.ChunkSize, pos.Y % api.World.BlockAccessor.ChunkSize, pos.Z % api.World.BlockAccessor.ChunkSize, api.World.BlockAccessor.ChunkSize, api.World.BlockAccessor.ChunkSize);
+            return MapUtil.Index3d(pos.X % GlobalConstants.ChunkSize, pos.Y % GlobalConstants.ChunkSize, pos.Z % GlobalConstants.ChunkSize, GlobalConstants.ChunkSize, GlobalConstants.ChunkSize);
         }
 
 

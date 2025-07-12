@@ -1,5 +1,5 @@
 {
-	code: "firebox",
+  code: "firebox",
   class: "BlockFireBox",
   entityClass: "FireBox",
 	attributes: {
@@ -14,7 +14,7 @@
 	blockNumbers: {
 		"air": 1,
 		"mudbrick-*": 2,
-		"usefulstuff:firebox-*": 3,
+		"usefulstuff:firebox-*": 3
 	},
 	offsets: [
 		{ x: 0, y: 3, z: 0, w: 1 },
@@ -98,14 +98,14 @@
 		{ x: -2, y: 1, z: -1, w: 2 },
 		{ x: -2, y: 0, z: 0, w: 1 },
 		{ x: -2, y: 0, z: 1, w: 2 },
-		{ x: -2, y: 0, z: -1, w: 2 },
+		{ x: -2, y: 0, z: -1, w: 2 }
 	]
 }
 	},
 	variantgroups: [
-		{ code:"type", states: ["light", "dark"] }
+		{code:"type", states: ["light", "dark"] }
 	],
-	shape: { base: "usefulstuff:block/firebox/empty" },
+	shape: { base: "usefulstuff:block/firebox/empty"},
 	sidesolid: {
 		all: false,
 	},
@@ -125,6 +125,9 @@
     "fuel": {
 			base: "game:block/wood/firewood/side"
 		},
+		"fire": {
+			base: "game:block/coal/ember" 
+			},
 	},
 	sounds: {
 		walk: "game:walk/stone",

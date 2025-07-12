@@ -76,6 +76,7 @@ namespace UsefulStuff
         }
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
+            // Called when BlockNameTag is held, i.e. selected in hotbar. 
         {
             string name = slot.Itemstack.Attributes.GetString("nametagStore");
             if (entitySel != null && byEntity.Controls.Sneak)

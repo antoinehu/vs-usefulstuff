@@ -16,6 +16,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 using Vintagestory.ServerMods;
+using Vintagestory.ServerMods.WorldEdit;
 
 namespace UsefulStuff
 {
@@ -186,16 +187,26 @@ namespace UsefulStuff
     public class QuenchPatches
     {
         [HarmonyPrepare]
-        static bool Prepare()
+        static bool Prepare(MethodBase original, Harmony harmony)
         {
+            //original: current method being patched
+            if (original != null)
+            {
+                // if current method has been patched by this mod, skip patching
+                // ApplyQuenchBonus is otherwise patched twice for some reason.
+                foreach (var patched in harmony.GetPatchedMethods())
+                {
+                    if (patched.Name == original.Name) return false;
+                }
+            }
             return UsefulStuffConfig.Loaded.QuenchEnabled;
         }
 
         [HarmonyPatch("OnCreatedByCrafting")]
         [HarmonyPostfix]
-        static void QuenchBonus(ItemSlot[] allInputslots, ItemSlot outputSlot)
+        static void QuenchedMaterialsCraftIntoQuenchedCollectibles(ItemSlot[] allInputslots, ItemSlot outputSlot)
         {
-            if (outputSlot.Itemstack?.Collectible.Tool == null || !UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(outputSlot.Itemstack.Collectible.FirstCodePart(1))) return;
+            if (outputSlot.Itemstack?.Collectible.Tool == null || !UsefulStuffConfig.Loaded.QuenchBonusMats.Contains(outputSlot.Itemstack.Collectible.LastCodePart())) return;
             bool quench = false;
             foreach (ItemSlot slot in allInputslots)
             {
@@ -205,9 +216,20 @@ namespace UsefulStuff
                     break;
                 }
             }
-            if (quench) outputSlot.Itemstack.Attributes.SetInt("durability", outputSlot.Itemstack.Collectible.Durability + (int)(outputSlot.Itemstack.Collectible.Durability * UsefulStuffConfig.Loaded.QuenchBonusMult));
+            if (quench) outputSlot.Itemstack.Attributes.SetBool("quenched", true);
+        }
+        [HarmonyPostfix]
+        [HarmonyPatch("GetMaxDurability")]
+        public static void ApplyQuenchBonus(ref int __result, ItemStack itemstack)
+        {
+            bool? quenched = itemstack?.Attributes.TryGetBool("quenched");
+            if ((quenched ?? false) && __result > 1)
+            {
+                __result = (int)((float)__result * (1f + UsefulStuffConfig.Loaded.QuenchBonusMult));
+            }
         }
     }
+
 
     [HarmonyPatch(typeof(BlockEntityClayForm))]
     public class Clayback
@@ -271,7 +293,7 @@ namespace UsefulStuff
             {
                 foreach (var patched in harmony.GetPatchedMethods())
                 {
-                    if (patched.Name == original.Name) return false; 
+                    if (patched.Name == original.Name) return false;
                 }
             }
 
@@ -282,13 +304,13 @@ namespace UsefulStuff
         [HarmonyPrefix]
         static void ChangeToScraps(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, CollectibleObject __instance, int amount = 1)
         {
-            if (world.Side != EnumAppSide.Server || byEntity == null) return;
+            if (world.Side != EnumAppSide.Server || byEntity == null || __instance.Attributes?["brokenReturn"] == null) return;
             IItemStack itemstack = itemslot.Itemstack;
 
             int leftDurability = itemstack.Attributes.GetInt("durability", __instance.GetMaxDurability(itemslot.Itemstack));
             leftDurability -= amount;
 
-            if (leftDurability <= 0 && __instance.Attributes?["brokenReturn"] != null)
+            if (leftDurability <= 0)
             {
                 JsonItemStack[] stacks = __instance.Attributes["brokenReturn"].AsObject<JsonItemStack[]>(new JsonItemStack[0]);
                 if (stacks.Length <= 0) return;

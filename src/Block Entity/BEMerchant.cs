@@ -52,8 +52,6 @@ namespace UsefulStuff
         {
             get { return AssetLocation.toLocations(Block.Attributes["badFood"].AsArray<string>(new string[0])); }
         }
-
-
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
@@ -61,7 +59,7 @@ namespace UsefulStuff
             entityUtil = api.ModLoader.GetModSystem<EntityPartitioning>();
             if (timer == 0) timer = api.World.Calendar.TotalHours;
 
-            RegisterGameTickListener(checkConditions, 10);
+            RegisterGameTickListener(checkConditions, 10000);
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -70,10 +68,10 @@ namespace UsefulStuff
             Room place = inn.GetRoomForPosition(Pos);
             if (place == null) { noroom = true; return; }
 
-            Api.World.BlockAccessor.WalkBlocks(new BlockPos(place.Location.MinX, place.Location.MinY, place.Location.MinZ), new BlockPos(place.Location.MaxX, place.Location.MaxY, place.Location.MaxZ),
+            Api.World.BlockAccessor.WalkBlocks(new BlockPos(place.Location.MinX, place.Location.MinY, place.Location.MinZ, 0), new BlockPos(place.Location.MaxX, place.Location.MaxY, place.Location.MaxZ, 0),
                 (block, posX, posY, posZ) =>
                 {
-                    if (block.Code.Path == Block.Code.Path && new BlockPos(posX, posY, posZ) != Pos)
+                    if (block.Code.Path == Block.Code.Path && new BlockPos(posX, posY, posZ, 0) != Pos)
                     {
                         Api.World.BlockAccessor.BreakBlock(Pos, null);
                     }
@@ -90,9 +88,9 @@ namespace UsefulStuff
             //System.Diagnostics.Debug.WriteLine(place.ExitCount);
             Entity tenant = haveTenant();
 
-            if (place == null) noroom = true; else noroom = false;
-            if (hasBed(place.Location)) nobed = false; else nobed = true;
-            if (hasFood(place.Location)) nofood = false; else nofood = true;
+            noroom = place == null;
+            nobed = !hasBed(place.Location);
+            nofood = !hasFood(place.Location);
 
             if ((nobed || noroom) && tenant != null) { evictTenant(); nextTenantIn = Api.World.Rand.Next(minTravelDays, maxTravelDays + 1) * 24; }
 
@@ -142,10 +140,9 @@ namespace UsefulStuff
                 dsc.AppendLine(Lang.Get("No food for next guest!"));
             }
 
-
             if (!occupied && nextTenantIn >= 24)
             {
-                dsc.AppendLine(Lang.Get("Another merchant arrives in {0} days", Math.Floor(nextTenantIn/24)));
+                dsc.AppendLine(Lang.Get("Another merchant arrives in {0} days", Math.Floor(nextTenantIn / 24)));
                 return;
             }
             else if (!occupied && nextTenantIn < 24)
@@ -155,7 +152,7 @@ namespace UsefulStuff
             }
             else if (occupied && tenantLeavingIn >= 24)
             {
-                dsc.AppendLine(Lang.Get("Merchant leaves in {0} days", Math.Floor(tenantLeavingIn/24)));
+                dsc.AppendLine(Lang.Get("Merchant leaves in {0} days", Math.Floor(tenantLeavingIn / 24)));
                 return;
             }
             else
@@ -204,12 +201,7 @@ namespace UsefulStuff
                 }
 
                 return true;
-            });
-
-
-
-
-
+            }, EnumEntitySearchType.Creatures);
             return result;
         }
 
@@ -219,9 +211,8 @@ namespace UsefulStuff
             {
                 if (eid == search.EntityId)
                 {
-                    EntityTrader trader;
-                    if (enjoyedStay && Api.Side == EnumAppSide.Server && (trader = search as EntityTrader) != null && search.Alive)
-                    { 
+                    if (enjoyedStay && Api.Side == EnumAppSide.Server && search is EntityTrader trader && search.Alive)
+                    {
                         DummySlot giftslot = new DummySlot(gifts[Api.World.Rand.Next(gifts.Length)]);
 
                         if (foodsource?.Inventory != null)
@@ -234,7 +225,10 @@ namespace UsefulStuff
 
                             if (!giftslot.Empty) Api.World.SpawnItemEntity(giftslot.Itemstack, Pos.ToVec3d().Add(0.5, 0.5, 0.5));
                         }
-                        else Api.World.SpawnItemEntity(giftslot.Itemstack, Pos.ToVec3d().Add(0.5, 0.5, 0.5));
+                        else
+                        {
+                            Api.World.SpawnItemEntity(giftslot.Itemstack, Pos.ToVec3d().Add(0.5, 0.5, 0.5));
+                        }
                     }
 
                     search.Die(EnumDespawnReason.Removed);
@@ -242,7 +236,7 @@ namespace UsefulStuff
                 }
 
                 return true;
-            });
+            }, EnumEntitySearchType.Creatures);
 
             occupied = false;
         }
@@ -250,17 +244,17 @@ namespace UsefulStuff
         public bool hasBed(Cuboidi area)
         {
             bool result = false;
-
-            Api.World.BlockAccessor.WalkBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
-                (block, posX, posY, posZ) =>
+            // Return false to SearchBlocks to stop search. Otherwise continue search.
+            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ, 0), new BlockPos(area.MaxX, area.MaxY, area.MaxZ, 0),
+                (block, blockpos) =>
                 {
-                    if (block.Code.BeginsWith("game","bed"))
+                    if (block.Code.BeginsWith("game", "bed"))
                     {
                         result = true;
-                        return;
+                        return false; //Bed found; stop search.
                     }
+                    return true;
                 });
-
 
             return result;
         }
@@ -268,27 +262,27 @@ namespace UsefulStuff
         public bool hasFood(Cuboidi area)
         {
             bool result = false;
-
-            Api.World.BlockAccessor.WalkBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ), new BlockPos(area.MaxX, area.MaxY, area.MaxZ),
-                (block, posX, posY, posZ) =>
+            // int checked2 = 0;
+            // Return false to SearchBlocks to stop search. Otherwise continue search.
+            Api.World.BlockAccessor.SearchBlocks(new BlockPos(area.MinX, area.MinY, area.MinZ, 0), new BlockPos(area.MaxX, area.MaxY, area.MaxZ, 0),
+                (block, blockpos) =>
                 {
-                    BlockEntityGenericContainer bec;
-
-                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(new BlockPos(posX, posY, posZ)) as BlockEntityGenericContainer) == null) return;
-
+                    // checked2++;
+                    IBlockEntityContainer bec;
+                    if ((bec = Api.World.BlockAccessor.GetBlockEntity(blockpos) as IBlockEntityContainer) == null) return true;
                     foreach (ItemSlot slot in bec.Inventory)
                     {
                         if (slot.Itemstack?.Collectible?.NutritionProps != null && !FindMatchCode(slot.Itemstack.Collectible.Code))
                         {
                             result = true;
                             foodsource = slot;
-                            return;
+                            // System.Diagnostics.Debug.WriteLine("(UsefulStuff) foodsource" + foodsource.Itemstack.Collectible.Code.ToString());
+                            return false; // Stops the search of SearchBlocks
                         }
                     }
-                    
+                    return true;
                 });
-
-
+            // System.Diagnostics.Debug.WriteLine("(UsefulStuff) checked2:{0}", checked2);
             return result;
         }
 

@@ -7,6 +7,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using Vintagestory.API.Config;
 using System.Text;
+using Vintagestory.API.Util;
 
 namespace UsefulStuff
 {
@@ -17,9 +18,9 @@ namespace UsefulStuff
         int tempColor;
         ItemStack tempStack;
 
-        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
         {
-            base.FromTreeAttributes(tree, worldForResolving);
+            base.FromTreeAttributes(tree, worldAccessForResolve);
             color = tree.GetInt("color");
             if (color == 0) color = ColorUtil.BlackArgb;
 
@@ -33,40 +34,53 @@ namespace UsefulStuff
             tree.SetString("text", text);
         }
 
-        public override void OnReceivedClientPacket(IPlayer player, int packetid, byte[] data)
+        public override void OnReceivedClientPacket(IPlayer fromPlayer, int packetid, byte[] data)
         {
             if (packetid == (int)EnumSignPacketId.SaveText)
             {
-                using (MemoryStream ms = new MemoryStream(data))
-                {
-                    BinaryReader reader = new BinaryReader(ms);
-                    text = reader.ReadString();
-                    if (text == null) text = "";
+                //Change in GuiDialogBlockEntityText probably; use Deserialize instead of BinaryReader to decode data
+                var packet = SerializerUtil.Deserialize<EditSignPacket>(data);
+                text = packet.Text;
+                // However, the data needs to be passed on as binary... 
+                byte[] data_binary;
+                using (MemoryStream ms = new MemoryStream())
+                { 
+                    BinaryWriter writer = new BinaryWriter(ms);
+                    writer.Write(text);
+                    data_binary = ms.ToArray();
                 }
+                
+
+                /*using (MemoryStream ms = new MemoryStream(data))
+                {
+                    //BinaryReader reader = new BinaryReader(ms);
+                    //text = reader.ReadString() ?? "";
+
+                }*/
 
                 color = tempColor;
 
-                /*((ICoreServerAPI)api).Network.BroadcastBlockEntityPacket(
-                    pos.X, pos.Y, pos.Z,
+                ((ICoreServerAPI)Api).Network.BroadcastBlockEntityPacket(
+                    Pos,
                     (int)EnumSignPacketId.NowText,
-                    data
-                );*/
+                    data_binary
+                );
 
                 MarkDirty(true);
 
                 // Tell server to save this chunk to disk again
-                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos.X, Pos.Y, Pos.Z).MarkModified();
+                Api.World.BlockAccessor.GetChunkAtBlockPos(Pos).MarkModified();
 
                 // 0% chance to get back the item
                 if (text == "")
                 {
-                    player.InventoryManager.TryGiveItemstack(tempStack);
+                    fromPlayer.InventoryManager.TryGiveItemstack(tempStack);
                 }
             }
 
             if (packetid == (int)EnumSignPacketId.CancelEdit && tempStack != null)
             {
-                player.InventoryManager.TryGiveItemstack(tempStack);
+                fromPlayer.InventoryManager.TryGiveItemstack(tempStack);
                 tempStack = null;
             }
         }
@@ -81,22 +95,20 @@ namespace UsefulStuff
 
                     string dialogClassName = reader.ReadString();
                     string dialogTitle = reader.ReadString();
-                    text = reader.ReadString();
-                    if (text == null) text = "";
+                    text = reader.ReadString() ?? "";
 
                     IClientWorldAccessor clientWorld = (IClientWorldAccessor)Api.World;
 
-                    GuiDialogBlockEntityTextInput dlg = new GuiDialogBlockEntityTextInput(dialogTitle, Pos, text, Api as ICoreClientAPI, 160, 1);
+                    GuiDialogBlockEntityTextInput dlg = new GuiDialogBlockEntityTextInput(dialogTitle, Pos, text, Api as ICoreClientAPI,
+                        new TextAreaConfig() { MaxWidth = 160});
 
                     dlg.OnCloseCancel = () =>
                     {
-                        (Api as ICoreClientAPI).Network.SendBlockEntityPacket(Pos.X, Pos.Y, Pos.Z, (int)EnumSignPacketId.CancelEdit, null);
+                        (Api as ICoreClientAPI)?.Network.SendBlockEntityPacket(Pos, (int)EnumSignPacketId.CancelEdit, null);
                     };
                     dlg.TryOpen();
                 }
             }
-
-
             if (packetid == (int)EnumSignPacketId.NowText)
             {
                 using (MemoryStream ms = new MemoryStream(data))
@@ -123,8 +135,6 @@ namespace UsefulStuff
                     tempColor = ColorUtil.ToRgba(255, r, g, b);
                     tempStack = hotbarSlot.TakeOut(1);
                     hotbarSlot.MarkDirty();
-
-
                     if (Api.World is IServerWorldAccessor)
                     {
                         byte[] data;
@@ -139,8 +149,7 @@ namespace UsefulStuff
                         }
 
                         ((ICoreServerAPI)Api).Network.SendBlockEntityPacket(
-                            (IServerPlayer)byPlayer,
-                            Pos.X, Pos.Y, Pos.Z,
+                            (IServerPlayer)byPlayer, Pos,
                             (int)EnumSignPacketId.OpenDialog,
                             data
                         );
@@ -160,7 +169,7 @@ namespace UsefulStuff
         {
             base.GetBlockInfo(forPlayer, dsc);
 
-            if (text != null && text != "")
+            if (!string.IsNullOrEmpty(text))
             {
                 dsc.AppendLine(Lang.Get("usefulstuff:nametag-name"));
                 dsc.AppendLine(text);
@@ -170,6 +179,5 @@ namespace UsefulStuff
                 dsc.AppendLine(Lang.Get("usefulstuff:nametag-erase"));
             }
         }
-
     }
 }

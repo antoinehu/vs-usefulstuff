@@ -21,7 +21,7 @@ namespace UsefulStuff
             {
                 cSlot.Itemstack.Collectible.DamageItem(Api.World, ent, cSlot, UsefulStuffConfig.Loaded.ChiselBenchRestoreCost);
 
-                foreach (int id in mb.MaterialIds)
+                foreach (int id in mb.BlockIds)
                 {
                     Api.World.SpawnItemEntity(new ItemStack(Api.World.GetBlock(id), 1), workspace.ToVec3d().Add(0.5));
                 }
@@ -33,11 +33,11 @@ namespace UsefulStuff
 
             if (cSlot.Itemstack.Collectible is BlockMicroBlock)
             {
-                int[] addTo = (cSlot.Itemstack.Attributes?["materials"] as IntArrayAttribute).value;
+                int[] addTo = (cSlot.Itemstack.Attributes?["materials"] as IntArrayAttribute)?.value;
 
                 if (addTo == null || addTo.Length < 1) return false;
 
-                mb.MaterialIds = mb.MaterialIds.AddRangeToArray(addTo);
+                mb.BlockIds = mb.BlockIds.AddRangeToArray(addTo);
                 mb.MarkDirty(true);
 
                 cSlot.TakeOut(1);

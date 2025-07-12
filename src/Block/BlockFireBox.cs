@@ -2,10 +2,12 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.MathTools;
 using System.Collections.Generic;
+using Vintagestory.GameContent;
+using System;
 
 namespace UsefulStuff
 {
-    public class BlockFireBox : Block
+    public class BlockFireBox : Block, IIgnitable
     {
         WorldInteraction[][] interactions;
 
@@ -47,19 +49,23 @@ namespace UsefulStuff
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
             BlockEntityFireBox befb = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityFireBox;
-            if (befb != null)
+            // BlockEntity should not be null because it is provided by Block class... Still it can be sometimes. I don't know why.
+            if (befb == null)
+            {
+                throw new NullFireBoxException("BlockEntityFireBox at "+blockSel.ToString()+" is null.");
+                /*world.BlockAccessor.SpawnBlockEntity(this.EntityClass, blockSel.Position);
+                befb = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BlockEntityFireBox;*/
+
+            }
+            else
             {
                 befb.OnInteract(byPlayer);
                 (byPlayer as IClientPlayer)?.TriggerFpAnimation(EnumHandInteract.HeldItemInteract);
                 return true;
             }
-
-
-
-            return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
 
-        public override EnumIgniteState OnTryIgniteBlock(EntityAgent byEntity, BlockPos pos, float secondsIgniting)
+        public EnumIgniteState OnTryIgniteBlock(EntityAgent byEntity, BlockPos pos, float secondsIgniting)
         {
             BlockEntityFireBox beb = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityFireBox;
             if (!beb.CanIgnite((byEntity as EntityPlayer)?.Player)) return EnumIgniteState.NotIgnitablePreventDefault;
@@ -69,12 +75,19 @@ namespace UsefulStuff
             return secondsIgniting > 4 ? EnumIgniteState.IgniteNow : EnumIgniteState.Ignitable;
         }
 
-        public override void OnTryIgniteBlockOver(EntityAgent byEntity, BlockPos pos, float secondsIgniting, ref EnumHandling handling)
+        public void OnTryIgniteBlockOver(EntityAgent byEntity, BlockPos pos, float secondsIgniting, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;
 
             BlockEntityFireBox beb = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityFireBox;
             beb?.TryIgnite((byEntity as EntityPlayer).Player);
+        }
+
+        public EnumIgniteState OnTryIgniteStack(EntityAgent byEntity, BlockPos pos, ItemSlot slot, float secondsIgniting)
+        {
+            BlockEntityFireBox beb = byEntity.World.BlockAccessor.GetBlockEntity(pos) as BlockEntityFireBox;
+            if (beb.Lit) return secondsIgniting > 4 ? EnumIgniteState.IgniteNow : EnumIgniteState.Ignitable;
+            return EnumIgniteState.NotIgnitable;
         }
 
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
@@ -84,5 +97,13 @@ namespace UsefulStuff
             return fb.Inventory[0].Empty ? interactions[0] : interactions[1];
         }
 
+    }
+
+    [Serializable]
+    public class NullFireBoxException : Exception
+    {
+        public NullFireBoxException() : base() { }
+        public NullFireBoxException(string message) : base(message) { }
+        public NullFireBoxException(string message, Exception inner) : base(message, inner) { }
     }
 }

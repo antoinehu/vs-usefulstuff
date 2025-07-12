@@ -27,7 +27,7 @@ namespace UsefulStuff
                     }
 
                     return true;
-                });
+                }, EnumEntitySearchType.Creatures);
 
                 if (bossnear) return;
             }
