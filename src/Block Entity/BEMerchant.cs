@@ -290,8 +290,8 @@ namespace UsefulStuff
         {
             EntityProperties type = Api.World.GetEntityType(merchants[Api.World.Rand.Next(merchants.Length)]);
             Entity guest = Api.ClassRegistry.CreateEntity(type);
-            guest.ServerPos.SetPos(Pos.ToVec3d().Add(0.5, 0.5, 0.5));
-            guest.Pos.SetFrom(guest.ServerPos);
+            guest.Pos.SetPos(Pos.ToVec3d().Add(0.5, 0.5, 0.5));
+            guest.Pos.SetFrom(guest.Pos);
             Api.World.SpawnEntity(guest);
             eid = guest.EntityId;
         }

@@ -6,7 +6,7 @@ using Vintagestory.API.MathTools;
 
 namespace UsefulStuff
 {
-    public class ItemGasMask : ItemWearable
+    public class ItemGasMask : Item
     {
         public override int GetMergableQuantity(ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
         {
@@ -37,16 +37,16 @@ namespace UsefulStuff
             base.TryMergeStacks(op);
         }
 
-        public override void DamageItem(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, int amount = 1)
+        public override void DamageItem(IWorldAccessor world, Entity byEntity, ItemSlot itemSlot, int amount = 1, bool destroyOnZeroDurability = true)
         {
             {
-                ItemStack itemstack = itemslot.Itemstack;
+                ItemStack itemstack = itemSlot.Itemstack;
 
                 int leftDurability = itemstack.Attributes.GetInt("durability", GetMaxDurability(itemstack));
                 leftDurability = GameMath.Clamp(leftDurability - amount, 0, Durability);
                 itemstack.Attributes.SetInt("durability", leftDurability);
 
-                itemslot.MarkDirty();
+                itemSlot.MarkDirty();
             }
         }
     }

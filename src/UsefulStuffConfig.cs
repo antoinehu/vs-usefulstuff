@@ -41,11 +41,6 @@
 
         public bool GliderNoCaveDiving { get; set; } = true;
 
-        //Quenching
-        public string[] QuenchBonusMats { get; set; } = { "iron", "steel", "meteoriciron" };
-
-        public float QuenchBonusMult { get; set; } = 0.2f;
-
         //Tent Settings
         public int TentRadius { get; set; } = 3;
 
@@ -89,8 +84,6 @@
         public bool TranqArrowEnabled { get; set; } = true;
 
         public bool BeenadeArrowEnabled { get; set; } = true;
-
-        public bool QuenchEnabled { get; set; } = true;
 
         public bool OmnichuteEnabled { get; set; } = true;
 

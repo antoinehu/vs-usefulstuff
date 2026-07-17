@@ -40,7 +40,7 @@ namespace UsefulStuff
             if (source?.SourceEntity != null && LeftGuardUp && shieldDown <= 0)
             {
                 if (entity.World.Rand.NextDouble() <= (shieldFatigue / MaxShieldTime) * UsefulStuffConfig.Loaded.ShieldFatigueMultiplier) return dmg;
-                if (source.SourceEntity.SidedPos.XYZ.SquareDistanceTo(entity.SidedPos.AheadCopy(1).XYZ) > source.SourceEntity.SidedPos.XYZ.SquareDistanceTo(entity.SidedPos.BehindCopy(1).XYZ)) return dmg;
+                if (source.SourceEntity.Pos.XYZ.SquareDistanceTo(entity.Pos.AheadCopy(1).XYZ) > source.SourceEntity.Pos.XYZ.SquareDistanceTo(entity.Pos.BehindCopy(1).XYZ)) return dmg;
                 float mult = dmg + (dmg * (source.DamageTier - guard.LeftHandItemSlot.Itemstack.Collectible.ToolTier) * 0.25f * entity.Stats.GetBlended("armorDurabilityLoss"));
                 guard.World.PlaySoundAt(new AssetLocation("game:sounds/tool/breakreinforced.ogg"), guard);
                 guard.LeftHandItemSlot.Itemstack.Collectible.DamageItem(entity.World, entity, guard.LeftHandItemSlot, Math.Max((int)mult, 1));
@@ -49,7 +49,7 @@ namespace UsefulStuff
             else if (source?.SourceEntity != null && RightGuardUp && shieldDown <= 0)
             {
                 if (entity.World.Rand.NextDouble() <= (shieldFatigue / MaxShieldTime) * UsefulStuffConfig.Loaded.ShieldFatigueMultiplier) return dmg;
-                if (source.SourceEntity.SidedPos.XYZ.SquareDistanceTo(entity.SidedPos.AheadCopy(1).XYZ) > source.SourceEntity.SidedPos.XYZ.SquareDistanceTo(entity.SidedPos.BehindCopy(1).XYZ)) return dmg;
+                if (source.SourceEntity.Pos.XYZ.SquareDistanceTo(entity.Pos.AheadCopy(1).XYZ) > source.SourceEntity.Pos.XYZ.SquareDistanceTo(entity.Pos.BehindCopy(1).XYZ)) return dmg;
                 float mult = dmg + (dmg * (source.DamageTier - guard.RightHandItemSlot.Itemstack.Collectible.ToolTier) * 0.25f * entity.Stats.GetBlended("armorDurabilityLoss"));
                 guard.World.PlaySoundAt(new AssetLocation("game:sounds/tool/breakreinforced.ogg"), guard);
                 guard.RightHandItemSlot.Itemstack.Collectible.DamageItem(entity.World, entity, guard.RightHandItemSlot, Math.Max((int)mult, 1));

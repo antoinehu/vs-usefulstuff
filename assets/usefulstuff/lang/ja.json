@@ -47,7 +47,6 @@
   "Cannot pack {0} in a bag!": "{0}を袋に詰めることは出来ません！",
   "Cannot unpack here, need solid ground!" : "ここでは展開出来ません。しっかりした地面が必要です。",
   "Cannot unpack here, need a clear area!" : "ここでは展開出来ません。広い場所が必要です。",
-  "Quenched" : "焼入れ、200度以下でクラフトする必要があります。",
 
   "arrowtip-explosive": "爆発物付き",
   "arrowtip-incendiary": "焼夷弾",

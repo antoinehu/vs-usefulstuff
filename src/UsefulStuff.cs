@@ -64,7 +64,6 @@ namespace UsefulStuff
 
             api.RegisterItemClass("Tentbag", typeof(ItemTentbag));
             api.RegisterItemClass("ItemUSGlider", typeof(ItemUSGlider));
-            api.RegisterItemClass("ItemToolhead", typeof(ItemToolhead));
             api.RegisterItemClass("ItemClimbingPick", typeof(ItemClimbingPick));
             api.RegisterItemClass("ItemGasMask", typeof(ItemGasMask));
 

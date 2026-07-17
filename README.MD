@@ -27,16 +27,6 @@ Glider Config
 - GliderBackwardsAt
 - GliderNoCaveDiving
 
-Quench Details
---------------
-After you've forged a tool head (e.g. hammer, falx, etc.), you can throw the hot tool head into water to quench it.
-Quenching gives a bonus to the maximum durability of the material. By default, this only works on iron tools and better. 
-
-Quench Config
--------------
-- QuenchBonusMats = { "iron", "steel", "meteoriciron" }
-- QuenchBonusMult = 0.2
-
 Tent Config
 -----------
 - TentRadius

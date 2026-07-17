@@ -42,7 +42,6 @@
   "Cannot pack {0} in a bag!": "Cannot pack {0} in a bag!",
   "Cannot unpack here, need solid ground!" : "Cannot unpack here, need solid ground!",
   "Cannot unpack here, need a clear area!" : "Cannot unpack here, need a clear area!",
-  "Quenched" : "Quenched, must be less than 200 degrees to craft with",
 
   "arrowtip-explosive": "Explosive Charge On",
   "arrowtip-incendiary": "Incendiary",
@@ -116,7 +115,6 @@ The gas mask is an item that works with the Asphyxia mod. When the user puts it 
 <strong>Other useful stuff to know</strong>
  - Pulverizer can break some rocks down into sand and will crush claystone into fire clay
  - Toolheads and tools can be grinded into metal bits in the quern. Metal tools will drop metal bits when they break
- - Iron and steel toolheads can be thrown into water while they are still hot to quench them for extra durability.
  - Clothes can be recycled for twine or leather by putting it into a crafting grid with a knife.
 ",
 

@@ -40,7 +40,7 @@ namespace UsefulStuff
 
         public override void OnTick()
         {
-            EffectParticles.MinPos = entity.SidedPos.XYZ;
+            EffectParticles.MinPos = entity.Pos.XYZ;
             EffectParticles.AddPos = new Vec3d(0.5, 0.5, 0.5);
             entity.World.SpawnParticles(EffectParticles);
         }
@@ -53,7 +53,7 @@ namespace UsefulStuff
 
         public override void OnStart()
         {
-            Entity.Stats.Set("walkspeed", "tranquilizer", -0.1f, true);
+            Entity.Stats.Set("walkspeed", "tranquilizer", 0.1f, true);
             SetExpiryInGameHours(1);
         }
         public override void OnStack(Buff oldBuff)

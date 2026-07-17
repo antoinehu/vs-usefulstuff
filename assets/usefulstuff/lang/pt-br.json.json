@@ -42,7 +42,6 @@
   "Cannot pack {0} in a bag!": "Não pode colocar {0} na bolsa!",
   "Cannot unpack here, need solid ground!" : "Não pode abrir aqui, precisa de chão sólido!",
   "Cannot unpack here, need a clear area!" : "Não pode abrir aqui, precisa de uma área limpa!",
-  "Quenched" : "Temperado, deve estar abaixo de 200 graus para ser usado para criar algo",
 
   "arrowtip-explosive": "Carga Explosiva Carregada",
   "arrowtip-incendiary": "Incendiária",

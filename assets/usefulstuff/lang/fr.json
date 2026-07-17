@@ -41,7 +41,6 @@
   "Cannot pack {0} in a bag!": "Impossible d'emballer {0} dans un sac !",
   "Cannot unpack here, need solid ground!" : "Impossible de déballer ici, besoin d'un sol solide !",
   "Cannot unpack here, need a clear area!" : "Impossible de déballer ici, besoin d'un espace dégagé !",
-  "Quenched" : "Trempé, doit être inférieur à 200 degrés pour fabriquer avec",
 
   "arrowtip-explosive": "Charge explosive activée",
   "arrowtip-incendiary": "Incendiaire",

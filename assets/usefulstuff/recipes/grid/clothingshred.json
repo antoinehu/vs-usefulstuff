@@ -1,127 +1,370 @@
 [
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-face-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 1 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-face-*"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 1
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-foot-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:leather-normal-plain", quantity: 1 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-foot-*"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:leather-normal-plain",
+      "quantity": 1
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-hand-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 1 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-hand-*"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 1
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-head-*", allowedVariants: [
-			"embroidered-coif", "fancy-head-dress", "fortune-tellers-scarf", "gem-encrusted-fur-hat",  "jailors-hat", "lackey-hat", 
-			"merchant-hat", "messengers-hat", "minstrel-hat", "noble-fillet", "peasent-head-scarf", "roll-hat", "shepherds-cowl",
-			"squire-hood", "hunter-cape", "tophat", "mianguan", "marketeer",
-			"rotwalker", "surgeon", "alchemist"]},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 2 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-head-*",
+        "allowedVariants": [
+          "embroidered-coif",
+          "fancy-head-dress",
+          "fortune-tellers-scarf",
+          "gem-encrusted-fur-hat",
+          "jailors-hat",
+          "lackey-hat",
+          "merchant-hat",
+          "messengers-hat",
+          "minstrel-hat",
+          "noble-fillet",
+          "peasent-head-scarf",
+          "roll-hat",
+          "shepherds-cowl",
+          "squire-hood",
+          "hunter-cape",
+          "tophat",
+          "mianguan",
+          "marketeer",
+          "rotwalker",
+          "surgeon",
+          "alchemist"
+        ]
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 2
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-head-straw-hat"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:drygrass", quantity: 4 }
-  },
-    {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-head-*", allowedVariants: ["bamboo-conehat", "bamboo-conehat-large"]},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:bamboostakes", quantity: 1 }
-  },
-  {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-lowerbody-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 6 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-head-straw-hat"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:drygrass",
+      "quantity": 4
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-upperbody-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 6 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-head-*",
+        "allowedVariants": [ "bamboo-conehat", "bamboo-conehat-large" ]
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:bamboostakes",
+      "quantity": 1
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-shoulder-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 3 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-lowerbody-*"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 6
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-upperbodyover-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 6 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-upperbody-*",
+        "allowedVariants": [
+          "aristocrat-shirt",
+          "azure-embroidered-shirt",
+          "hunter-shirt",
+          "great-steppe-shirt",
+          "earth-toned-robe",
+          "hunters-green",
+          "jailor-tunic",
+          "lackey-shirt",
+          "linen-tunic",
+          "merchant-shirt",
+          "messenger-shirt",
+          "minstrel-shirt",
+          "noble-shirt",
+          "pearl-shirt",
+          "peasent-shirt",
+          "prince-tunic",
+          "reindeer-herder-collared-shirt",
+          "scarlet-ornate-linen-tunic",
+          "shepherd-tunic",
+          "squire-shirt",
+          "tattered-crimson-tunic",
+          "tattered-linen-shirt",
+          "temptress-velvet-shirt",
+          "woolen-shirt",
+          "blackguard-shirt",
+          "clockmaker-shirt",
+          "malefactor-shirt",
+          "forlorn-tunic",
+          "commoner-shirt",
+          "tailor-blouse",
+          "homespun-shirt",
+          "pastoral-shirt",
+          "chateau-blouse",
+          "marketeer",
+          "rottenking",
+          "king",
+          "surgeon",
+          "miner",
+          "alchemist",
+          "forgotten",
+          "deep",
+          "survivor",
+          "scribe",
+          "grass",
+          "fortuneteller",
+          "chemiselong",
+          "chemiseshoulderlong",
+          "chemiseshouldershort",
+          "chemisescoop",
+          "chemiseshort",
+          "chemisesleeveless",
+          "classicaltunic",
+          "arctichunter",
+          "embroideredfur",
+          "arcticfisher",
+          "emeraldreindeerherder",
+          "kirtleblack",
+          "kirtleblue",
+          "kirtlegray",
+          "kirtlegreen",
+          "kirtleorange",
+          "kirtlepink",
+          "kirtlepurple",
+          "kirtlered",
+          "kirtlewhite",
+          "kirtleyellow",
+          "kirtlebrown",
+          "acrobat",
+          "jester",
+          "beggar",
+          "wanderer",
+          "warrior",
+          "ruralfarmer",
+          "ruralhunter",
+          "midsummer",
+          "centurion",
+          "popinjay",
+          "farmhand"
+        ]
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 6
+    }
   },
   {
-    	ingredientPattern: "KC",
-    	ingredients: {
-        "C": { type: "item", code: "game:clothes-waist-*"},
-        "K": { type: "item", code: "game:knife-*", isTool: true}
-    	},
-    	width: 2,
-    	height: 1,
-      shapeless: true,
-    	output: { type: "item", code: "game:flaxtwine", quantity: 1 }
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-upperbody-rawhidemantle"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-raw-large",
+      "quantity": 1
+    }
   },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-shoulder-*"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 3
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-upperbodyover-*"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 6
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-waist-*"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:flaxtwine",
+      "quantity": 1
+    }
+  }
 ]
