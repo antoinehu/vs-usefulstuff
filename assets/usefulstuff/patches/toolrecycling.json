@@ -671,7 +671,7 @@
       "isValue": "true"
     }
   },
-
+  
   {
     "op": "add",
     "path": "/grindingPropsByType",
@@ -679,7 +679,7 @@
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
         "GroundStack": {
           "type": "item",
-          "code": "game:metalbit-{material}",
+          "code": "game:metalbit-{metal}",
           "quantity": 10
         }
       }
@@ -714,7 +714,7 @@
       "@*-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|gold|silver|steel)": {
         "GroundStack": {
           "type": "item",
-          "code": "game:metalbit-{material}",
+          "code": "game:metalbit-{metal}",
           "quantity": 10
         }
       }
