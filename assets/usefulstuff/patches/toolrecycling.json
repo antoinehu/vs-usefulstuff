@@ -47,7 +47,7 @@
     ],
     "file": "game:itemtypes/tool/shovel.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -100,7 +100,7 @@
     ],
     "file": "game:itemtypes/tool/axe-metal.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -153,7 +153,7 @@
     ],
     "file": "game:itemtypes/tool/hoe.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -206,7 +206,7 @@
     ],
     "file": "game:itemtypes/tool/spear.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -259,7 +259,7 @@
     ],
     "file": "game:itemtypes/tool/knife.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -312,7 +312,7 @@
     ],
     "file": "game:itemtypes/tool/knife.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -402,7 +402,7 @@
     ],
     "file": "game:itemtypes/tool/blade.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -455,7 +455,7 @@
     ],
     "file": "game:itemtypes/tool/pickaxe.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -508,7 +508,7 @@
     ],
     "file": "game:itemtypes/tool/prospectingpick.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -561,7 +561,7 @@
     ],
     "file": "game:itemtypes/tool/scythe.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -614,7 +614,7 @@
     ],
     "file": "game:itemtypes/tool/saw.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -667,7 +667,7 @@
     ],
     "file": "game:itemtypes/tool/hammer.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -702,7 +702,7 @@
     ],
     "file": "game:itemtypes/tool/cleaver.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -737,7 +737,7 @@
     ],
     "file": "game:itemtypes/tool/chisel.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   },
@@ -772,7 +772,7 @@
     ],
     "file": "game:itemtypes/tool/shears.json",
     "condition": {
-      "when": "UStoolRecyclingEnabled",
+      "when": "UStoolBreakingEnabled",
       "isValue": "true"
     }
   }

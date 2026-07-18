@@ -49,6 +49,7 @@ namespace UsefulStuff
             api.World.Config.SetBool("UScardiacArrowEnabled", UsefulStuffConfig.Loaded.CardiacArrowEnabled);
             api.World.Config.SetBool("USomnichuteEnabled", UsefulStuffConfig.Loaded.OmnichuteEnabled);
             api.World.Config.SetBool("UStoolRecyclingEnabled", UsefulStuffConfig.Loaded.ToolRecyclingEnabled);
+            api.World.Config.SetBool("UStoolBreakingEnabled", UsefulStuffConfig.Loaded.ToolBreakingEnabled);
             api.World.Config.SetBool("USclothesRecyclingEnabled", UsefulStuffConfig.Loaded.ClothesRecyclingEnabled);
             api.World.Config.SetBool("USrockCrushingEnabled", UsefulStuffConfig.Loaded.RockCrushingEnabled);
             api.World.Config.SetBool("USpotKilnEnabled", UsefulStuffConfig.Loaded.PotKilnEnabled);

@@ -98,6 +98,8 @@
 
         public bool ToolRecyclingEnabled { get; set; } = true;
 
+        public bool ToolBreakingEnabled { get; set; } = true;
+
         public bool ClothesRecyclingEnabled { get; set; } = true;
 
         public bool ShearDecorEnabled { get; set; } = true;
