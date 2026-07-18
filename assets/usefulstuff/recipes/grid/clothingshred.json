@@ -4,7 +4,12 @@
     "ingredients": {
       "C": {
         "type": "item",
-        "code": "game:clothes-face-*"
+        "code": "game:clothes-face-*",
+		"allowedVariants": ["hunter-mask", "malefactor-mask", "forlorn-veil", "tailor-mask", "crow", "hummingbird", "cat", "festivecat",    
+			"marketeer", "rotwalker", "rottenking", "surgeon", "surgeonhood", "miner", "forgotten", "survivor",
+			"arctic", "bandageeyes", "bandageleft", "bandageright", "blindfold", 
+            "eyepatchstuddedleft", "eyepatchstuddedright", "headbandfabric",  "acrobat",
+            "linenveil"]
       },
       "K": {
         "type": "item",
@@ -21,12 +26,21 @@
       "quantity": 1
     }
   },
+  
   {
     "ingredientPattern": "KC",
     "ingredients": {
       "C": {
         "type": "item",
-        "code": "game:clothes-foot-*"
+        "code": "game:clothes-foot-*",
+		"allowedVariants": [
+			"aristocrat-shoes", "great-steppe-boots", "fur-lined-reindeer-herder-shoes", "high-leather-boots", "jailor-boots", "lackey-shoes", "merchant-shoes", 
+			"messenger-shoes", "metalcap-boots", "minstrel-boots", "noble-shoes", "peasent-slippers", "prince-boots", "prisoner-binds", "shepherd-sandals", "soldier-boots", "squire-boots", 
+			"nomad-boots", "temptress-velvet-shoes", "tigh-high-boots", "wool-lined-knee-high-boots", "worn-leather-boots", "blackguard-shoes", "clockmaker-shoes", "hunter-boots", "malefactor-boots",
+			"forlorn-shoes", "commoner-boots", "tailor-shoes", "marketeer", "rotwalker", "rottenking", "king", "surgeon", "miner", "alchemist", "forgotten", "survivor", "scribe",
+			"rusty-ankle-manacles", "acrobat", "arctichunter", "fortuneteller", "hobnailboots", "arcticfisher", "jester", "emeraldreindeerherder", "embroideredfur",
+            "beggar", "warrior", "wanderer", "ruralfarmer", "ruralhunter", "midsummer", "centurion", "popinjay", "farmhand"
+		  ] 
       },
       "K": {
         "type": "item",
@@ -40,6 +54,28 @@
     "output": {
       "type": "item",
       "code": "game:leather-normal-plain",
+      "quantity": 1
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-foot-knee-high-fur-boots"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-pelt-large",
       "quantity": 1
     }
   },
@@ -160,7 +196,38 @@
     "ingredients": {
       "C": {
         "type": "item",
-        "code": "game:clothes-lowerbody-*"
+        "code": "game:clothes-head-hide"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-raw-medium",
+      "quantity": 1
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-lowerbody-*",
+		"allowedVariants": [
+			"aristocrat-leggings", "dirty-linen-trousers", "fine-trousers", "jailor-pants", "lackey-breeches", "merchant-pants", "messenger-trousers",
+			"minstrel-pants", "noble-pants", "prince-breeches", "reindeer-herder-trousers", "raw-hide-trousers", "shepherd-pants", "squire-pants", "nomad-trousers", 
+			"tattered-peasent-gown", "torn-riding-pants", "warm-woolen-pants", "woolen-leggings", "workmans-gown", "blackguard-leggings", "clockmaker-pants",
+			"hunter-leggings", "malefactor-trousers", "forlorn-pants", "commoner-trousers", "tailor-trousers", "homespun-pants", "pastoral-pants", "chateau-pants",
+			"marketeer", "rotwalker", "rottenking", "surgeon", "miner", "alchemist", "forgotten", "deep", "survivor", "scribe", "skirt", "king", "grass",
+            "embroideredpantaloons", "braiesblue", "braiesbrown", "braiesgray", "braiesplain", "hoseblackred", "hosebluepink", "hosebrowngray", "hosegraypurple",
+            "hosegreenyellow", "hoseorangeblue", "hosepurplepink", "hoseredwhite", "hosewhiteorange", "hoseyellowblack", "embroideredfur", 
+            "emeraldreindeerherder", "acrobat", "jester", "beggar", "wanderer", "warrior", "centurion", "popinjay", "farmhand"]
       },
       "K": {
         "type": "item",
@@ -175,6 +242,51 @@
       "type": "item",
       "code": "game:flaxtwine",
       "quantity": 6
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-lowerbody-*",
+		"allowedVariants": ["arctichunter", "arcticfisher"]
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-pelt-large",
+      "quantity": 3
+    }
+  },
+{
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-lowerbody-raw-hide-trousers"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-raw-huge",
+      "quantity": 1
     }
   },
   {
@@ -297,7 +409,7 @@
     "shapeless": true,
     "output": {
       "type": "item",
-      "code": "game:hide-raw-large",
+      "code": "game:hide-raw-huge",
       "quantity": 1
     }
   },
@@ -306,7 +418,13 @@
     "ingredients": {
       "C": {
         "type": "item",
-        "code": "game:clothes-shoulder-*"
+        "code": "game:clothes-shoulder-*",
+		"allowedVariants": [
+			"aristocrat-mantle", "artisans-scarf", "blacksmith-apron", "embroidered-collar", "embroidered-tartarean-scarf", "hooded-cape", "jord-robe", 
+			"hunter-poncho", "longsleeve-pearl-moonrobe", "minstrel-coat", "mooncloth-robe", "noble-fur-collar", "peasent-kaftan",  "shortsleeve-pearl-moonrobe", 
+			"stained-leather-poncho", "woolen-scarf", "squire-tunic", "clockmaker-apron", "forlorn-sash", "malefactor-cloak", "marketeer", "rotwalker", "surgeon",
+			"miner", "alchemist", "survivor", "scribe", "owlponcho", "forestponcho", "midnightponcho", "emeraldreindeerherder", "acrobat", "shawlhawk", "shawlmoth",             "apronblack", "apronblue", "apronbrown", "aprongray", "aprongreen", "apronorange", "apronpink", "apronplain", "apronpurple", "apronred", "apronwhite", "apronyellow",
+            "wanderer", "patchwork", "ruralhunter", "midsummer", "popinjay"]
       },
       "K": {
         "type": "item",
@@ -328,7 +446,58 @@
     "ingredients": {
       "C": {
         "type": "item",
-        "code": "game:clothes-upperbodyover-*"
+        "code": "game:clothes-shoulder-*",
+		"allowedVariants": ["furwrap", "royalfur"]
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-pelt-large",
+      "quantity": 2
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-shoulder-rawhidewrap"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-raw-large",
+      "quantity": 2
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-upperbodyover-*",
+		"allowedVariants": ["cerise-embroidered-reindeer-herder-coat", "clockmaker-tunic", "cobalt-mantle", "commoner-coat",
+			"forgotten", "great-steppe-mantle", "hunter-coat", "huntsmans-tunic", "king", 
+			"malefactor-tunic", "marketeer", "miner", "nomad-mantle", "reindeer-herder-fur-coat", 
+			"rottenking", "rotwalker", "spice-merchants-coat", "surgeon", "tailor-jacket", "travelers-earthrobe", "warm-robe",
+            "peliconburgundy", "peliconpurple", "quiltedcorsage", "quilteddoublet", "fortuneteller", "arctichunter", "embroideredfur",
+            "arcticfisher", "emeraldreindeerherder", "temptress"]
       },
       "K": {
         "type": "item",
@@ -345,12 +514,84 @@
       "quantity": 6
     }
   },
+   {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-upperbodyover-*",
+		"allowedVariants":["fur-coat", "arctichunter", "arcticfisher"]
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-pelt-huge",
+      "quantity": 1
+    }
+  },
+{
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-upperbodyover-hidetunic"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:hide-raw-huge",
+      "quantity": 1
+    }
+  },
+{
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-upperbodyover-furlinedvest"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:leather-normal-plain",
+      "quantity": 2
+    }
+  },
   {
     "ingredientPattern": "KC",
     "ingredients": {
       "C": {
         "type": "item",
-        "code": "game:clothes-waist-*"
+        "code": "game:clothes-waist-*",
+		"allowedVariants":["aristocrat-belt", "cerise-embroidered-reindeer-herder-waistband", "fancy-royal-belt", "fortune-teller-hip-scarf",  "heavy-belt", "heavy-tool-belt", 
+			"jailor-belt", "linen-rope", "merchant-belt", "messenger-belt",  "moss-embroidered-belt", "noble-sash", "peasant-strap", "prince-waistband", "reindeer-herder-waistband", 
+			"squire-belt", "sturdy-belt", "blackguard-belt", "clockmaker-belt", "malefactor-sash", "forlorn-belt", "tailor-belt", "marketeer", "rottenking",
+			"king", "miner", "alchemist", "scribe", "jambiya-belt", "peasantapron", "regalwrap", "bronzebelt", "beggar", "wanderer", "warrior", "ruralhunter", "ruralfarmer",
+            "midsummer", "centurion", "popinjay", "farmhand"]
       },
       "K": {
         "type": "item",
@@ -364,6 +605,28 @@
     "output": {
       "type": "item",
       "code": "game:flaxtwine",
+      "quantity": 1
+    }
+  },
+  {
+    "ingredientPattern": "KC",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "game:clothes-waist-sturdy-leather-belt"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-*",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 1,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "game:leather-normal-plain",
       "quantity": 1
     }
   }
