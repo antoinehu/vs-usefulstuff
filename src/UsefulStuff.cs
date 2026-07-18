@@ -55,7 +55,8 @@ namespace UsefulStuff
             api.World.Config.SetBool("USshearDecorEnabled", UsefulStuffConfig.Loaded.ShearDecorEnabled);
             api.World.Config.SetBool("USchiselBenchEnabled", UsefulStuffConfig.Loaded.ChiselBenchEnabled);
             api.World.Config.SetBool("UStradersEnabled", UsefulStuffConfig.Loaded.TradersEnabled);
-            api.World.Config.SetBool("USgasMaskEnabled", UsefulStuffConfig.Loaded.GasMaskEnabled && api.ModLoader.IsModEnabled("gasapi"));
+            api.World.Config.SetBool("USgasMaskEnabled", UsefulStuffConfig.Loaded.GasMaskEnabled 
+                && (api.ModLoader.IsModEnabled("gasapi") || api.ModLoader.IsModEnabled("asphyxiarebreathed")));
         }
 
         public override void Start(ICoreAPI api)
