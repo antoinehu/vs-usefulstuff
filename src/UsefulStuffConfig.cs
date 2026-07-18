@@ -58,7 +58,12 @@
 
         public int ChiselBenchRestoreCost { get; set; } = 10;
 
-
+        // Lantern clip-on 
+        // Makes additional items going in backpack slots compatible with the clip-on via regexp.
+        // @ is VS WildcardUtil's marker for regexps. 
+        // E.g. "@.*(ithania|basket).*" makes baskets (e.g. code game:basket-reed-normal)
+        // and Ithania backpacks (e.g. code ithaniahunter) compatible with the clip-on.
+        public string AdditionalLanternClippableBackpacks { get; set; } = "";
         #region Control Content
 
         public bool ShieldsEnabled { get; set; } = true;

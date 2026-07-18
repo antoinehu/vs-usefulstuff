@@ -14,6 +14,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using Vintagestory.ServerMods;
 using Vintagestory.ServerMods.WorldEdit;
@@ -34,7 +35,14 @@ namespace UsefulStuff
         static void Postfix(EntityPlayer __instance, ref byte[] __result)
         {
             IInventory backpack = __instance.Player?.InventoryManager.GetInventory(GlobalConstants.backpackInvClassName + "-" + __instance.PlayerUID);
-            if (backpack == null || backpack.Count < 5 || backpack[0].Itemstack?.Collectible.Code.Path.Contains("backpack") != true || backpack[4].Itemstack?.Collectible.Code.Path.Contains("lantern") != true) return;
+            if (backpack == null 
+                || backpack.Count < 5 
+                || (
+                        backpack[0].Itemstack?.Collectible.Code.Path.Contains("backpack") != true
+                     && !WildcardUtil.Match(UsefulStuffConfig.Loaded.AdditionalLanternClippableBackpacks,
+                                            backpack[0].Itemstack?.Collectible.Code.Path) 
+                    )
+                || backpack[4].Itemstack?.Collectible.Code.Path.Contains("lantern") != true) return;
 
             byte[] clipon = backpack[4].Itemstack?.Block?.LightHsv;
             if (clipon == null) return;

@@ -87,8 +87,8 @@
 	"shape": { "base": "item/tool/climbingpick" },
 	"textures": {
 		"metal": { "base": "game:block/metal/ingot/{metal}" },
-		"handle": { "base": "game:item/tool/material/handle" },
-		"string": { "base": "game:item/tool/material/string" }
+		"handle": { "base": "game:item/tool/handle" },
+		"string": { "base": "game:item/resource/string" }
 	},
 	"durabilitybytype": {
 		"*-iron": 1350,
