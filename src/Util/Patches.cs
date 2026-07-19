@@ -34,34 +34,51 @@ namespace UsefulStuff
         [HarmonyPostfix]
         static void Postfix(EntityPlayer __instance, ref byte[] __result)
         {
-            IInventory backpack = __instance.Player?.InventoryManager.GetInventory(GlobalConstants.backpackInvClassName + "-" + __instance.PlayerUID);
-            if (backpack == null 
-                || backpack.Count < 5 
-                || (
-                        backpack[0].Itemstack?.Collectible.Code.Path.Contains("backpack") != true
-                     && !WildcardUtil.Match(UsefulStuffConfig.Loaded.AdditionalLanternClippableBackpacks,
-                                            backpack[0].Itemstack?.Collectible.Code.Path) 
-                    )
-                || backpack[4].Itemstack?.Collectible.Code.Path.Contains("lantern") != true) return;
-
-            byte[] clipon = backpack[4].Itemstack?.Block?.LightHsv;
-            if (clipon == null) return;
-
-            if (__result == null)
+            // backpacksAndContents = [backpackslot1, ...,backpackslot4,
+            //                         backpack1inventoryslot1, backpack1inventoryslot2,..., backpack4inventoryslotN]
+            IInventory backpacksAndContents = __instance.Player?.InventoryManager.GetOwnInventory(GlobalConstants.backpackInvClassName);
+            // 
+            var backpackSlots = backpacksAndContents.Where(slot => slot is ItemSlotBackpack).Select(slot => (slot, slot.Empty)).ToList();
+            //var inventorySizes = backpackSlots.Where(bslot => !bslot.Empty)
+            //       .Select(x => x.slot.Itemstack.ItemAttributes["backpack"]["quantitySlots"].AsInt(0)).ToList();
+            int bagFirstSlot = backpackSlots.Count;
+            for (ushort i = 0; i < backpackSlots.Count; i++)
             {
-                __result = clipon;
-                return;
-            }
 
-            float totalval = __result[2] + clipon[2];
-            float t = clipon[2] / totalval;
+                if (backpackSlots[i].Empty) continue;
+                ItemSlot slot = backpackSlots[i].slot;
+                bool isBackpack = slot?.Itemstack?.Collectible.Code.Path.Contains("backpack") ?? false;
+                bool isStillClippable = (slot?.Itemstack != null) ? WildcardUtil.Match(UsefulStuffConfig.Loaded.AdditionalLanternClippableBackpacks, slot?.Itemstack?.Collectible.Code.Path) : false;
+                int backpackSize = backpackSlots[i].slot.Itemstack.ItemAttributes["backpack"]["quantitySlots"].AsInt();
+                bool firstSlotHasLantern = backpacksAndContents[bagFirstSlot]?.Itemstack?.Collectible.Code.Path.Contains("lantern") ?? false;
+                if ( (isBackpack || isStillClippable) && firstSlotHasLantern)
+                {
+                    byte[] clipon = backpacksAndContents[bagFirstSlot].Itemstack?.Block?.LightHsv;
+                    if (clipon == null) return;
 
-            __result = new byte[]
-            {
+                    if (__result == null)
+                    {
+                        __result = clipon;
+                        return;
+                    }
+
+                    float totalval = __result[2] + clipon[2];
+                    float t = clipon[2] / totalval;
+
+                    __result = new byte[]
+                    {
                     (byte)(clipon[0] * t + __result[0] * (1-t)),
                     (byte)(clipon[1] * t + __result[1] * (1-t)),
                     Math.Max(clipon[2], __result[2])
-            };
+                    };
+                    return;
+                }
+                else
+                {
+                    bagFirstSlot += backpackSize;
+                }
+            }
+
         }
     }
 
